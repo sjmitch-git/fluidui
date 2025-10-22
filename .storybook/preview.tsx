@@ -23,7 +23,16 @@ const preview: Preview = {
       test: "todo",
     },
   },
-  decorators: [withGlobals],
+  decorators: [
+    withGlobals,
+    (Story) => {
+      return (
+        <div className="preview-decorator">
+          <Story />
+        </div>
+      );
+    },
+  ],
   tags: ["autodocs"],
 };
 

@@ -8,11 +8,7 @@ export const withGlobals = (StoryFn, context) => {
   const isInDocs = context.viewMode === "docs";
 
   useEffect(() => {
-    const selector = isInDocs
-      ? `#anchor--${context.id} .sb-story`
-      : "#storybook-root";
-
-    console.log(globals);
+    const selector = isInDocs ? `#anchor--${context.id} .sb-story` : "#storybook-root";
 
     changeBackgroundMode(selector, { darkMode, isInDocs, className });
   }, [darkMode, isInDocs, context.id]);
@@ -23,7 +19,7 @@ export const withGlobals = (StoryFn, context) => {
 const changeBackgroundMode = (selector, { darkMode, className }) => {
   const rootElement = document.querySelector(selector);
   const rootParent = window.parent.document.getElementById("root");
-  console.log("Changing background mode:", rootParent);
+
   if (darkMode) {
     rootElement.classList.add(className);
     rootParent.classList.add(className);

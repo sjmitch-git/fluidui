@@ -60,7 +60,7 @@ import { Heading } from '@smitch/fluid'
   },
   decorators: [
     (Story) => (
-      <div className="p-4">
+      <div className="dark:text-light bg-white dark:bg-transparent p-2">
         <Story />
       </div>
     ),
@@ -74,9 +74,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   argTypes: {
-    level: {
-      description: "Defines the heading level (H1-H6).",
+    level: { control: { type: "select", options: [1, 2, 3, 4, 5, 6] } },
+    weight: {
+      control: { type: "select", options: ["light", "normal", "medium", "semibold", "bold"] },
     },
+    align: { control: { type: "select", options: ["left", "center", "right"] } },
+    transform: {
+      control: { type: "select", options: ["normal", "capitalize", "uppercase", "lowercase"] },
+    },
+    children: { control: "text" },
+    className: { control: "text" },
   },
   args: {
     level: 1,
@@ -121,7 +128,8 @@ export const HeadingWithRatings: Story = {
     ...Default.args,
     level: 3,
     transform: "uppercase",
-    weight: "light",
+    weight: "semibold",
+    className: "text-info",
     children: (
       <>
         User ratings:{" "}

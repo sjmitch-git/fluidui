@@ -35,6 +35,8 @@ import { Badge } from '@smitch/fluid'
 
 ### Example Usage:
 \`\`\`tsx
+import { FaStar } from "react-icons/fa6";
+
 <Badge position="inline" layout="circle" background="info" color="dark">
   <FaStar />
 </Badge>
@@ -68,7 +70,7 @@ export const Default: Story = {
 
 Default.decorators = [
   (Story) => (
-    <div className="relative px-4">
+    <div className="relative dark:text-light bg-white dark:bg-transparent p-2">
       <Heading level={2} className="relative">
         Latest Post <Story />
       </Heading>

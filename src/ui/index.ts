@@ -36,8 +36,9 @@ export { Icon } from "./icon";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Loading, Spinner } from "./loading";
-// export { Map, MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle } from './map'
-export { Modal } from "./modal";
+export { Map, MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle } from './map' */
+export { Markdown } from "./markdown";
+/* export { Modal } from "./modal";
 export { NavBar } from "./navbar";
 export { Pagination } from "./pagination";
 export { PasswordInput } from "./passwordinput";
