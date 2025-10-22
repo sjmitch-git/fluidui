@@ -1,0 +1,44 @@
+[
+	{
+		"id": "1",
+		"name": "akita",
+		"src": "/img/dogs/akita.jpg",
+		"description": "The Akita is a Japanese dog breed of large size. Originating from the mountains of northern Japan, the Akita has a short double coat similar to that of many other northern spitz breeds. Historically, they were used by samurai for guarding, fighting and the hunting of bears.",
+		"link": "https://en.wikipedia.org/wiki/Akita_(dog)"
+	},
+	{
+		"id": "2",
+		"name": "beagle",
+		"src": "/img/dogs/beagle.jpg",
+		"description": "The beagle is a breed of small scent hound, similar in appearance to the much larger foxhound. The beagle was developed primarily for hunting hare, known as beagling",
+		"link": "https://en.wikipedia.org/wiki/Beagle"
+	},
+	{
+		"id": "3",
+		"name": "corgi",
+		"src": "/img/dogs/corgi.jpg",
+		"description": "The Corgi is a cattle herding dog breed that originated in Wales. Corgis descended from the Spitz family of dogs.",
+		"link": "https://en.wikipedia.org/wiki/Pembroke_Welsh_Corgi"
+	},
+	{
+		"id": "4",
+		"name": "dachshund",
+		"src": "/img/dogs/dachshund.jpg",
+		"description": "The dachshund, also known as the wiener dog, badger dog, doxie, and sausage dog, is a short-legged, long-bodied, hound-type dog breed. The dog may be smooth-haired, wire-haired, or long-haired. Coloration varies.",
+		"link": "https://en.wikipedia.org/wiki/Dachshund"
+	},
+	{
+		"id": "5",
+		"name": "husky",
+		"src": "/img/dogs/husky.jpg",
+		"description": "The Alaskan husky is a breed of medium-sized working sled dog, developed specifically for its performance as such.",
+		"link": "https://en.wikipedia.org/wiki/Alaskan_husky"
+	},
+	{
+		"id": "6",
+		"name": "poodle",
+		"src": "/img/dogs/poodle.jpg",
+		"description": "The Poodle, called the Pudel in German and the Caniche in French, is a breed of water dog. The breed is divided into four varieties based on size, the Standard Poodle, Medium Poodle, Miniature Poodle and Toy Poodle, although the Medium Poodle is not universally recognised.",
+		"link": "https://en.wikipedia.org/wiki/Poodle"
+	}
+]
