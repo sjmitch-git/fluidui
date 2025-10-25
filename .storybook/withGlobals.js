@@ -18,13 +18,24 @@ export const withGlobals = (StoryFn, context) => {
 
 const changeBackgroundMode = (selector, { darkMode, className }) => {
   const rootElement = document.querySelector(selector);
-  const rootParent = window.parent.document.getElementById("root");
+  let rootParent = null;
+
+  // Accessing window.parent.document can throw in some sandboxed/iframe
+  // environments (Chromatic / capture runners). Guard it safely.
+  try {
+    rootParent =
+      window.parent && window.parent.document
+        ? window.parent.document.getElementById("root")
+        : null;
+  } catch (e) {
+    rootParent = null;
+  }
 
   if (darkMode) {
-    rootElement.classList.add(className);
-    rootParent.classList.add(className);
+    if (rootElement) rootElement.classList.add(className);
+    if (rootParent) rootParent.classList.add(className);
   } else {
-    rootElement.classList.remove(className);
-    rootParent.classList.remove(className);
+    if (rootElement) rootElement.classList.remove(className);
+    if (rootParent) rootParent.classList.remove(className);
   }
 };
