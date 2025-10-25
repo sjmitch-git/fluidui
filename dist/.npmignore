@@ -1,0 +1,8 @@
+# Exclude stories and tests from lib directory
+**/stories/
+**/stories/**
+lib/**/stories/
+lib/**/stories/**
+
+# Optional: Exclude specific file patterns globally
+lib/**/*.stories.*
