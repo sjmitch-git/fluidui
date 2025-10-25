@@ -20,6 +20,11 @@ const eslintConfig = [...compat.extends("next/core-web-vitals", "next/typescript
     "build/**",
     "next-env.d.ts",
   ],
+  {
+    rules: {
+      '@next/next/no-img-element': 'off',
+    },
+  },
 }, ...storybook.configs["flat/recommended"]];
 
 export default eslintConfig;

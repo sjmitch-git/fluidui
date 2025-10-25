@@ -6,3 +6,9 @@ lib/**/stories/**
 
 # Optional: Exclude specific file patterns globally
 lib/**/*.stories.*
+
+# General rule: ignore any story files in source tree
+src/**/*.stories.*
+# Also ignore story folders under src
+src/**/stories/
+src/**/stories/**

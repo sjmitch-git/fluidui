@@ -45,7 +45,7 @@ const VideoPlayer = ({
 		document.addEventListener('fullscreenchange', handleFullscreenChange)
 
 		return () => {
-			document.removeEventListener('keydown', handleFullscreenChange)
+			document.removeEventListener('fullscreenchange', handleFullscreenChange)
 		}
 	}, [setFullscreen, fullscreen])
 

@@ -4,7 +4,11 @@ import { FaClosedCaptioning } from 'react-icons/fa'
 
 import { Button, Select } from '../..'
 
-const CaptionsControl = (handleCaptionChange: any, tracks: string[], srcLangs: string[]) => {
+const CaptionsControl = (
+	handleCaptionChange: (value: string) => void,
+	tracks: string[],
+	srcLangs: string[]
+) => {
 	const [showSelect, setShowSelect] = useState(false)
 
 	const onCaptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

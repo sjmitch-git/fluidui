@@ -11,7 +11,7 @@ export interface AlertProps extends BadgeProps {
   status?: "info" | "success" | "warning" | "error";
   message: React.ReactNode;
   layout?: "default" | "solid" | "outline";
-  onClick?: (e: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   dismissable?: boolean;
   rounded?: "none" | "md" | "lg";
 }
