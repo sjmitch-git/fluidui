@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+User-agent: amazonbot
+Disallow: /
+
+# Host
+Host: https://fluid-ui.vercel.app
+
+# Sitemaps
+Sitemap: https://fluid-ui.vercel.app/sitemap.xml
