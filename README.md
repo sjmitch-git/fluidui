@@ -14,7 +14,6 @@ A Next.js/React UI component library.
   - [Compatibility](#compatibility)
     - [Supported stacks \& compatibility matrix](#supported-stacks--compatibility-matrix)
     - [Node / environment](#node--environment)
-    - [Release \& upgrade notes](#release--upgrade-notes)
     - [Troubleshooting](#troubleshooting)
   - [Peer dependencies](#peer-dependencies)
   - [Basic Usage](#basic-usage)
@@ -171,17 +170,6 @@ npm install @smitch/fluid
 
 ## Compatibility
 
-Fluid UI releases are split by major versions to match React/Next compatibility. Choose the
-installation command that fits your project:
-
-```bash
-npm install @smitch/fluid
-```
-
-```bash
-npm install @smitch/fluid@^3
-```
-
 ### Supported stacks & compatibility matrix
 
 Use the table below to pick the Fluid major line that matches your app's React / Next.js and
@@ -204,13 +192,6 @@ Tailwind versions. This helps avoid peer dependency conflicts.
 
 - Recommended Node: use an LTS release (Node 18/20+ recommended depending on your Next version).
 - Use `npm ci` in CI/CD for deterministic installs (it uses the lockfile).
-
-### Release & upgrade notes
-
-- When upgrading Fluid across a major version, follow the changelog and test components in a staging
-  environment. Major versions may contain breaking changes (React or Next API changes).
-- Tailwind: all current Fluid releases are built against Tailwind v3. When Fluid reaches v5 we plan
-  to migrate to Tailwind v4; migration notes will be published then.
 
 ### Troubleshooting
 
@@ -279,125 +260,111 @@ export default App;
 
 ### Buttons
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button--docs'>Button</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button-close-button--docs'>Close
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button--docs'>Button</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button-close-button--docs'>Close
   Button</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button-group--docs'>Button
-  Group</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button-group--docs'>Button Group</a>
 
 ### Inputs
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-autocomplete--docs'>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-autocomplete--docs'>
   	Autocomplete
   </a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-checkbox--docs'>Checkbox</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-counter--docs'>Counter</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-file-upload--docs'>File
-  Upload</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-input--docs'>Input</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-password-input--docs'>Password
-  Input</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-radiog-roup--docs'>Radio
-  Group</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-range-input--docs'>Range
-  Input</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-search-input--docs'>Search
-  Input</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-select--docs'>Select</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-switch--docs'>Switch</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-textarea--docs'>Textarea</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-text-input--docs'>Text Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-checkbox--docs'>Checkbox</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-counter--docs'>Counter</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-file-upload--docs'>File Upload</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-input--docs'>Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-password-input--docs'>Password Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-radiog-roup--docs'>Radio Group</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-range-input--docs'>Range Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-search-input--docs'>Search Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-select--docs'>Select</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-switch--docs'>Switch</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-textarea--docs'>Textarea</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-text-input--docs'>Text Input</a>
 
 ### Forms
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-fieldset--docs'>Fieldset</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-form--docs'>Form</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-label--docs'>Label</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-fieldset--docs'>Fieldset</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-form--docs'>Form</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-label--docs'>Label</a>
 
 ### Menus
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-accordion--docs'>Accordion</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-breadcrumbs--docs'>Breadcrumbs</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-carousel--docs'>Carousel</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-drawer--docs'>Drawer</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-dropdown--docs'>Dropdown</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-navbar--docs'>NavBar</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-pagination--docs'>Pagination</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-sidebar--docs'>Sidebar</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-tabs--docs'>Tabs</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-accordion--docs'>Accordion</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-breadcrumbs--docs'>Breadcrumbs</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-carousel--docs'>Carousel</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-drawer--docs'>Drawer</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-dropdown--docs'>Dropdown</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-navbar--docs'>NavBar</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-pagination--docs'>Pagination</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-sidebar--docs'>Sidebar</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-tabs--docs'>Tabs</a>
 
 ### Feedback
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-alert--docs'>Alert</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-badge--docs'>Badge</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-dialog--docs'>Dialog</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-loading--docs'>Loading</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-progress--docs'>Progress</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-ratings--docs'>Ratings</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-ticker--docs'>Ticker</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-toast--docs'>Toast</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-alert--docs'>Alert</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-badge--docs'>Badge</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-dialog--docs'>Dialog</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-loading--docs'>Loading</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-progress--docs'>Progress</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-ratings--docs'>Ratings</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-ticker--docs'>Ticker</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-toast--docs'>Toast</a>
 
 ### Media
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-card--docs'>Card</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-figure--docs'>Figure</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-gallery--docs'>Gallery</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-hero--docs'>Hero</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-icon--docs'>Icon</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-modal--docs'>Modal</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-placeholder--docs'>PlaceHolder</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-twitter-embed--docs'>Twitter
-  Embed</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-twitter-embed--docs#twitter-timeline'>Twitter
-  Timeline</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-video--docs'>Video</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-video-player--docs'>Video
-  Player</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-youtube-embed--docs'>YouTube
-  Embed</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-card--docs'>Card</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-figure--docs'>Figure</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-gallery--docs'>Gallery</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-hero--docs'>Hero</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-icon--docs'>Icon</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-modal--docs'>Modal</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-placeholder--docs'>PlaceHolder</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-twitter-embed--docs'>Twitter Embed</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-twitter-embed--docs'>Twitter Timeline</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-video--docs'>Video</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-video-player--docs'>Video Player</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-youtube-embed--docs'>YouTube Embed</a>
 
 ### Typography
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-blockquote--docs'>Blockquote</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-codeblock--docs'>Codeblock</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-heading--docs'>Heading</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-blockquote--docs'>Blockquote</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-codeblock--docs'>Codeblock</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-heading--docs'>Heading</a>
 
 ### Data Visualization
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-data-table--docs'>Data
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-data-table--docs'>Data
   Table</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-pictogram--docs'>Pictogram</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-line-chart--docs'>Line
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-pictogram--docs'>Pictogram</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-line-chart--docs'>Line
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-bar-chart--docs'>Bar
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-bar-chart--docs'>Bar Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-mixed-chart--docs'>Mixed
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-mixed-chart--docs'>Mixed
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-pie-chart--docs'>Pie Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-doughnut-chart--docs'>Doughnut
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-pie-chart--docs'>Pie
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-radar-chart--docs'>Radar
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-doughnut-chart--docs'>Doughnut
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-polar-area-chart--docs'>PolarArea
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-radar-chart--docs'>Radar
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-scatter-chart--docs'>Scatter
   Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-polar-area-chart--docs'>PolarArea
-  Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-scatter-chart--docs'>Scatter
-  Chart</a>
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-stat-bar--docs'>Stat
-  Bar</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-stat-bar--docs'>Stat Bar</a>
 
 ### Time
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-time-clock--docs'>Clock</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/time-clock--docs'>Clock</a>
 
 ### Maps
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-maps-map--docs'>Map</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/maps-map--docs'>Map</a>
 
 ### Social Media
 
-- <a href='https://fluid-ui.vercel.app/?path=/docs/fluid-ui-social-socialshare--docs'>Social Media
-  Share</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/social-socialshare--docs'>Social Media Share</a>
 
 ## Author
 

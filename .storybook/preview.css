@@ -1,0 +1,11 @@
+:root {
+  --dark-bg: #1b1c1d;
+}
+
+.sb-preparing-story,
+.sb-preparing-docs,
+.sb-previewBlock,
+.css-mzrf51,
+.preview-decorator {
+  background-color: var(--dark-bg) !important;
+}
