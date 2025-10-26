@@ -8,10 +8,10 @@
     "removeComments": true,
     "outDir": "./dist/lib",
     "rootDir": "./src/ui",
-    "jsx": "preserve",
-    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
     "module": "ESNext",
-    "target": "ES2017",
+    "target": "ES5",
     "esModuleInterop": true
   },
   "include": ["src/ui/**/*.ts", "src/ui/**/*.tsx"],
