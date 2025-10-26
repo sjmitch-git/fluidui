@@ -53,7 +53,7 @@ const Pagination = ({
 
   const sizeClasses = useMemo(() => sizes[size], [size]);
 
-  const handleChange = (e: React.FormEvent<HTMLSelectElement>): void =>
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void =>
     onChange(e.currentTarget.value);
 
   const handleOnClick = (page: string) => onChange(page);

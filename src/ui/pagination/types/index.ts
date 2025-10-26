@@ -16,7 +16,7 @@ export interface PaginationProps {
   layout?: "horizontal" | "vertical";
   gap?: "none" | "sm" | "md" | "lg" | "xl";
   rounded?: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLElement>) => void;
+  onChange: (page: string) => void;
   className?: string;
   style?: React.CSSProperties;
   btnShape?: "default" | "rounded" | "square" | "circle";
