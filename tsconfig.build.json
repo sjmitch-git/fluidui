@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationDir": "./dist/lib",
+    "emitDeclarationOnly": false,
+    "removeComments": true,
+    "outDir": "./dist/lib",
+    "rootDir": "./src/ui",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ES5",
+    "esModuleInterop": true
+  },
+  "include": ["src/ui/**/*.ts", "src/ui/**/*.tsx"],
+  "exclude": ["node_modules", "src/ui/**/stories/**/*"]
+}
