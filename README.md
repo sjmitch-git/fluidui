@@ -12,6 +12,10 @@ A Next.js/React UI component library.
       - [2. Configure `tailwind.config.js`](#2-configure-tailwindconfigjs)
   - [Installation](#installation)
   - [Compatibility](#compatibility)
+    - [Supported stacks \& compatibility matrix](#supported-stacks--compatibility-matrix)
+    - [Node / environment](#node--environment)
+    - [Release \& upgrade notes](#release--upgrade-notes)
+    - [Troubleshooting](#troubleshooting)
   - [Peer dependencies](#peer-dependencies)
   - [Basic Usage](#basic-usage)
   - [Components](#components)
@@ -178,6 +182,44 @@ npm install @smitch/fluid
 npm install @smitch/fluid@^3
 ```
 
+### Supported stacks & compatibility matrix
+
+Use the table below to pick the Fluid major line that matches your app's React / Next.js and
+Tailwind versions. This helps avoid peer dependency conflicts.
+
+- Fluid v4.x (current):
+
+  - React: 19.x
+  - Next.js: 15.x
+  - Tailwind: 3.x
+  - Install: `npm install @smitch/fluid`
+
+- Fluid v3.x:
+  - React: 18.x
+  - Next.js: 14.x (and other releases built on React 18)
+  - Tailwind: 3.x
+  - Install: `npm install @smitch/fluid@^3`
+
+### Node / environment
+
+- Recommended Node: use an LTS release (Node 18/20+ recommended depending on your Next version).
+- Use `npm ci` in CI/CD for deterministic installs (it uses the lockfile).
+
+### Release & upgrade notes
+
+- When upgrading Fluid across a major version, follow the changelog and test components in a staging
+  environment. Major versions may contain breaking changes (React or Next API changes).
+- Tailwind: all current Fluid releases are built against Tailwind v3. When Fluid reaches v5 we plan
+  to migrate to Tailwind v4; migration notes will be published then.
+
+### Troubleshooting
+
+- If you see duplicate React warnings after installing Fluid into an app, run `npm ls react` in the
+  app to locate version conflicts. Ensure your app provides `react` and `react-dom` that satisfy the
+  Fluid `peerDependencies`.
+- If a feature (charts, maps) fails because a peer package is missing, install the optional peers
+  indicated in the Peer dependencies section (e.g., `chart.js`, `react-chartjs-2`, `leaflet`).
+
 ## Peer dependencies
 
 Fluid is a component library and expects the host app to provide framework/runtime dependencies.
@@ -220,21 +262,6 @@ Runtime guidance:
 
 - As with charts, Leaflet/react-leaflet are optional peers. We lazy-load map code so apps that don't
   use maps aren't forced to install these packages.
-
-Notes
-
-- `react`, `react-dom`, and `next` are listed as peer dependencies; your app should provide them.
-- Chart and Leaflet packages are optional peers — install them only if using the associated
-  components. If you prefer convenience over control, you can add those packages to
-  `optionalDependencies` in the published `dist/package.json` so npm will try to install them
-  automatically for consumers.
-- Commit your lockfile (package-lock.json / yarn.lock) so installs are deterministic in CI.
-
-Notes:
-
-- Commit your lockfile (package-lock.json / yarn.lock) for deterministic installs in CI. Even when
-  using a range like `^4`, the lockfile pins the exact version installed.
-- Use `npm ci` in CI to ensure installs are deterministic and reproduce the lockfile exactly.
 
 ## Basic Usage
 
