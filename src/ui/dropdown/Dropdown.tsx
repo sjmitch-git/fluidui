@@ -38,7 +38,7 @@ const Dropdown = ({
     label === show ? closeNav() : openNav(label);
   };
 
-  const handleBlur = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleBlur = (e: React.FocusEvent<HTMLButtonElement>) => {
     e.preventDefault();
     closeNav();
   };
