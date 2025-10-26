@@ -1,11 +1,11 @@
-export function merge<T extends Record<string, unknown> = Record<string, unknown>>(
-  ...objects: Array<T | null | undefined>
-): T {
+export function merge(
+  ...objects: Array<Record<string, unknown> | null | undefined>
+): Record<string, unknown> {
   const validObjects = objects.filter((obj) => obj != null && typeof obj === "object") as Array<
     Record<string, unknown>
   >;
-  if (validObjects.length === 0) return {} as T;
-  if (validObjects.length === 1) return validObjects[0] as unknown as T;
+  if (validObjects.length === 0) return {} as Record<string, unknown>;
+  if (validObjects.length === 1) return validObjects[0];
 
   const result: Record<string, unknown> = {};
 
@@ -19,7 +19,7 @@ export function merge<T extends Record<string, unknown> = Record<string, unknown
 
       if (isObject(currentValue) && isObject(newValue)) {
         // both are plain objects -> deep merge
-        result[key] = merge<Record<string, unknown>>(
+        result[key] = merge(
           currentValue as Record<string, unknown>,
           newValue as Record<string, unknown>
         );
@@ -34,5 +34,5 @@ export function merge<T extends Record<string, unknown> = Record<string, unknown
     }
   }
 
-  return result as T;
+  return result;
 }

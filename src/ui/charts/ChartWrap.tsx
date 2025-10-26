@@ -87,9 +87,9 @@ const ChartWrap = <T extends ChartTypes>({
 
   const ChartComponent = chartComponents[chartType] as React.ElementType;
 
-  const combinedOptions = useMemo(() => {
-    if (options) return merge(defaultOptions, options);
-    return defaultOptions;
+  const combinedOptions = useMemo<ChartOptionsMap[T]>(() => {
+    if (options) return merge(defaultOptions, options) as ChartOptionsMap[T];
+    return defaultOptions as ChartOptionsMap[T];
   }, [defaultOptions, options]);
 
   return (
@@ -97,7 +97,7 @@ const ChartWrap = <T extends ChartTypes>({
       <Suspense fallback={<div className="text-center text-sm italic">Loading Chart</div>}>
         <ChartComponent
           data={data}
-          options={combinedOptions}
+          options={combinedOptions as unknown as any}
           title={title}
           legendposition={legendposition}
           style={style}
