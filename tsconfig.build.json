@@ -11,8 +11,9 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "module": "ESNext",
-    "target": "ES5",
-    "esModuleInterop": true
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "sourceMap": true
   },
   "include": ["src/ui/**/*.ts", "src/ui/**/*.tsx"],
   "exclude": ["node_modules", "src/ui/**/stories/**/*"]

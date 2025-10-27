@@ -19,8 +19,8 @@ A Next.js/React UI component library.
   - [Charts Usage](#charts-usage)
     - [Chart Usage Example](#chart-usage-example)
   - [Map Usage](#map-usage)
-  - [Map Usage Example](#map-usage-example)
-    - [Static Map](#static-map)
+    - [Map Usage Examples](#map-usage-examples)
+      - [Static Map](#static-map)
       - [Map with marker](#map-with-marker)
   - [Components](#components)
     - [Buttons](#buttons)
@@ -319,9 +319,9 @@ npm install leaflet react-leaflet leaflet.fullscreen
 npm install -D @types/leaflet @types/leaflet.fullscreen
 ```
 
-## Map Usage Example
+### Map Usage Examples
 
-### Static Map
+#### Static Map
 
 ```jsx
 import { Map } from "@smitch/fluid/map";

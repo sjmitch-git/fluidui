@@ -11,7 +11,7 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   build: {
-    chunkSizeWarningLimit: 100,
+    chunkSizeWarningLimit: 200,
     sourcemap: true,
     rollupOptions: {
       onwarn(warning, warn) {
