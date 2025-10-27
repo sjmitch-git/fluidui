@@ -21,7 +21,7 @@ The **BubbleChart** component displays data points with varying sizes, making it
 
 ### Import:
 \`\`\`jsx
-import { BubbleChart } from '@smitch/fluid'
+import { BubbleChart } from '@smitch/fluid/charts'
 \`\`\`
 
 ### Example Usage:

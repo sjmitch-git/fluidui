@@ -19,7 +19,7 @@ The **RadarChart** component is ideal for displaying multivariate data, such as 
 
 ### Import:
 \`\`\`jsx
-import { RadarChart } from '@smitch/fluid';
+import { RadarChart } from '@smitch/fluid/charts';
 \`\`\`
 
 ### Example Usage:

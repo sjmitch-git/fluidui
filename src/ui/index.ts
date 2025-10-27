@@ -8,17 +8,6 @@ export { Button, CloseButton } from "./button";
 export { ButtonGroup } from "./buttongroup";
 export { Card, CardHeader, CardBody, CardImage, CardFooter } from "./card";
 export { Carousel } from "./carousel";
-export {
-  BarChart,
-  BubbleChart,
-  LineChart,
-  PieChart,
-  DoughnutChart,
-  ScatterChart,
-  RadarChart,
-  PolarAreaChart,
-  MixedChart,
-} from "./charts";
 export { Checkbox } from "./checkbox";
 export { Clock } from "./clock";
 export { Codeblock } from "./codeblock";
@@ -36,7 +25,6 @@ export { Icon } from "./icon";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Loading, Spinner } from "./loading";
-export { Map, MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle } from "./map";
 export { Markdown } from "./markdown";
 export { Modal } from "./modal";
 export { NavBar } from "./navbar";

@@ -18,7 +18,7 @@ The **MixedChart** component is ideal for displaying two or more different chart
 
 ### Import:
 \`\`\`jsx
-import { MixedChart } from '@smitch/fluid';
+import { MixedChart } from '@smitch/fluid/charts';
 \`\`\`
 
 ### Example Usage:

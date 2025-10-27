@@ -7,9 +7,8 @@ A Next.js/React UI component library.
   - [Features](#features)
   - [Getting Started](#getting-started)
     - [1. Install Next.js and React](#1-install-nextjs-and-react)
-    - [2. Configure Tailwind 3](#2-configure-tailwind-3)
-      - [1. Install Tailwind CSS Forms Plugin](#1-install-tailwind-css-forms-plugin)
-      - [2. Configure `tailwind.config.js`](#2-configure-tailwindconfigjs)
+    - [2. Configure Tailwind 3](#1-configure-tailwind-3)
+      - [1. Configure `tailwind.config.js`](#1-configure-tailwindconfigjs)
   - [Installation](#installation)
   - [Compatibility](#compatibility)
     - [Supported stacks \& compatibility matrix](#supported-stacks--compatibility-matrix)
@@ -17,6 +16,8 @@ A Next.js/React UI component library.
     - [Troubleshooting](#troubleshooting)
   - [Peer dependencies](#peer-dependencies)
   - [Basic Usage](#basic-usage)
+  - [Charts Usage](#charts-usage)
+  - [Maps Usage](#maps-usage)
   - [Components](#components)
     - [Buttons](#buttons)
     - [Inputs](#inputs)
@@ -34,15 +35,14 @@ A Next.js/React UI component library.
 ## Overview
 
 Fluid UI is a comprehensive library of reusable UI components for Next.js/React applications. This
-library is designed to streamline the development process and ensure consistency across your
-projects.
+library is designed to streamline the development process and ensure consistency across projects.
 
 ## Features
 
 - Reusable UI components
-- Built with React
-- Easy to integrate
-- Supports TypeScript
+- Charts
+- Maps
+- Built with React 19, Next.js 15 and TailwindCSS 3
 
 ## Getting Started
 
@@ -59,27 +59,17 @@ npx create-next-app@latest
 When prompted:
 
 - **Use TypeScript?**: Select **Yes** to enable TypeScript in your project.
-- **Use Tailwind CSS?**: Select **Yes** to install and configure Tailwind CSS automatically.
+- **Use TailwindCSS?**: Select **Yes** to install and configure TailwindCSS automatically.
 
-Next.js will then generate the necessary configuration for both **TypeScript** and **Tailwind CSS**,
+Next.js will then generate the necessary configuration for both **TypeScript** and **TailwindCSS**,
 including `tsconfig.json`, `tailwind.config.js`, and PostCSS setup.
 
 ### 2. Configure Tailwind 3
 
-To ensure that **Fluid UI** works correctly, you need to configure **Tailwind CSS** and install the
-**Tailwind Forms** plugin. Follow the steps below:
+To ensure that **Fluid UI** works correctly, you need to configure **TailwindCSS**. Follow the steps
+below:
 
-Note: All current Fluid releases are built against Tailwind CSS v3. When Fluid reaches a v5 major
-release we plan to migrate to Tailwind CSS v4 — migration notes and upgrade guidance will be
-provided at that time. (To be done)
-
-#### 1. Install Tailwind CSS Forms Plugin
-
-You need to install the Tailwind CSS forms plugin for proper form styling:
-
-```bash
-npm install @tailwindcss/forms
-```
+Note: All current Fluid releases utilize TailwindCSS v3.
 
 #### 2. Configure `tailwind.config.js`
 
@@ -97,7 +87,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    /* Add this line: */
+    /* IMPORTANT: Add this line: */
     "./node_modules/@smitch/fluid/**/*.js",
   ],
   theme: {
@@ -191,7 +181,6 @@ Tailwind versions. This helps avoid peer dependency conflicts.
 ### Node / environment
 
 - Recommended Node: use an LTS release (Node 18/20+ recommended depending on your Next version).
-- Use `npm ci` in CI/CD for deterministic installs (it uses the lockfile).
 
 ### Troubleshooting
 
@@ -239,11 +228,6 @@ TypeScript notes:
 npm install -D @types/leaflet
 ```
 
-Runtime guidance:
-
-- As with charts, Leaflet/react-leaflet are optional peers. We lazy-load map code so apps that don't
-  use maps aren't forced to install these packages.
-
 ## Basic Usage
 
 Now, you can import and use any Fluid UI [component](#components) in your Next.js project:
@@ -252,6 +236,135 @@ Now, you can import and use any Fluid UI [component](#components) in your Next.j
 import { Button } from "@smitch/fluid";
 
 const App = () => <Button>Click me</Button>;
+
+export default App;
+```
+
+## Charts Usage
+
+Charts available include:
+
+- BarChart
+- BubbleChart
+- LineChart
+- PieChart
+- DoughnutChart
+- ScatterChart
+- RadarChart
+- PolarAreaChart
+- MixedChart
+
+Charts require Chart.js and the React wrapper:
+
+```bash
+npm install chart.js react-chartjs-2
+```
+
+### Chart Usage Example
+
+```jsx
+import { BarChart } from "@smitch/fluid/charts";
+
+const App = () => {
+  return (
+    <BarChart
+        data={{
+            datasets: [
+                {
+                    label: 'Min Temperature (°C)',
+                    data: [12, 15, 10, 8, 14],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderWidth: 0,
+                },
+                {
+                    label: 'Max Temperature (°C)',
+                    data: [22, 25, 20, 18, 24],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderWidth: 0,
+                },
+                ...
+            ],
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        }}
+      title = 'Weekly Temperature Ranges',
+      legendposition = 'bottom',
+    />
+  )
+};
+
+export default App;
+```
+
+## Map Usage
+
+Map options include:
+
+- MapMarker
+- MapCircle
+- MapPolygon
+- MapLine
+- MapRectangle
+
+Install Leaflet and React Leaflet (and leaflet.fullscreen if fullscreen control required):
+
+```bash
+npm install leaflet react-leaflet leaflet.fullscreen
+```
+
+```bash
+npm install -D @types/leaflet @types/leaflet.fullscreen
+```
+
+### Map Usage Example
+
+#### Static Map
+
+```jsx
+import { Map } from "@smitch/fluid/map";
+
+const App = () => {
+  return (
+    <Map
+      center={[51.505, -0.09]}
+      fullscreenControlPosition="topleft"
+      style={{
+        height: "400px",
+        width: "100%",
+      }}
+      tileIndex={0}
+      zoom={16}
+    />
+  );
+};
+
+export default App;
+```
+
+#### Map with marker
+
+```jsx
+import { Map, MapMarker } from "@smitch/fluid/map";
+
+const App = () => {
+  return (
+    <Map
+      attributionControl
+      center={[51.505, -0.09]}
+      fullscreenControl
+      fullscreenControlPosition="topleft"
+      style={{
+        height: "400px",
+        width: "100%",
+      }}
+      tilesControl
+      zoom={13}
+      zoomControl
+    >
+      <MapMarker popupContent="Marker 1" position={[51.505, -0.09]} />
+      <MapMarker position={[51.51, -0.1]} />
+    </Map>
+  );
+};
 
 export default App;
 ```
@@ -368,4 +481,5 @@ export default App;
 
 ## Author
 
-Fluid UI is developed and maintained by [Stephen Mitchell](mailto:sjmitch20@outlook.com).
+Fluid UI is developed and maintained by
+[Stephen Mitchell](https://www.linkedin.com/in/stephen-m-52a3a4192).

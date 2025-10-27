@@ -20,7 +20,7 @@ The **BarChart** component renders clear and responsive bar charts for visualizi
 
 ### Import:
 \`\`\`jsx
-import { BarChart } from '@smitch/fluid'
+import { BarChart } from '@smitch/fluid/charts'
 \`\`\`
 
 ### Example Usage:

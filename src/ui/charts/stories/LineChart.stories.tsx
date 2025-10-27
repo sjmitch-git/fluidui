@@ -17,7 +17,7 @@ The **LineChart** component is a way of plotting data points on a line. Often, i
 
 ### Import:
 \`\`\`jsx
-import { LineChart } from '@smitch/fluid'
+import { LineChart } from '@smitch/fluid/charts'
 \`\`\`
 
 ### Example Usage:
