@@ -7,8 +7,8 @@ A Next.js/React UI component library.
   - [Features](#features)
   - [Getting Started](#getting-started)
     - [1. Install Next.js and React](#1-install-nextjs-and-react)
-    - [2. Configure Tailwind 3](#1-configure-tailwind-3)
-      - [1. Configure `tailwind.config.js`](#1-configure-tailwindconfigjs)
+    - [2. Configure Tailwind 3](#2-configure-tailwind-3)
+      - [2. Configure `tailwind.config.js`](#2-configure-tailwindconfigjs)
   - [Installation](#installation)
   - [Compatibility](#compatibility)
     - [Supported stacks \& compatibility matrix](#supported-stacks--compatibility-matrix)
@@ -17,7 +17,11 @@ A Next.js/React UI component library.
   - [Peer dependencies](#peer-dependencies)
   - [Basic Usage](#basic-usage)
   - [Charts Usage](#charts-usage)
-  - [Maps Usage](#maps-usage)
+    - [Chart Usage Example](#chart-usage-example)
+  - [Map Usage](#map-usage)
+  - [Map Usage Example](#map-usage-example)
+    - [Static Map](#static-map)
+      - [Map with marker](#map-with-marker)
   - [Components](#components)
     - [Buttons](#buttons)
     - [Inputs](#inputs)
@@ -315,9 +319,9 @@ npm install leaflet react-leaflet leaflet.fullscreen
 npm install -D @types/leaflet @types/leaflet.fullscreen
 ```
 
-### Map Usage Example
+## Map Usage Example
 
-#### Static Map
+### Static Map
 
 ```jsx
 import { Map } from "@smitch/fluid/map";
@@ -326,7 +330,6 @@ const App = () => {
   return (
     <Map
       center={[51.505, -0.09]}
-      fullscreenControlPosition="topleft"
       style={{
         height: "400px",
         width: "100%",

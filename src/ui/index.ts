@@ -25,7 +25,6 @@ export { Icon } from "./icon";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Loading, Spinner } from "./loading";
-export { Markdown } from "./markdown";
 export { Modal } from "./modal";
 export { NavBar } from "./navbar";
 export { Pagination } from "./pagination";

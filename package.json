@@ -1,6 +1,6 @@
 {
   "name": "fluid",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -34,14 +34,12 @@
     "@storybook/addon-vitest": "^9.1.13",
     "@storybook/nextjs": "^9.1.13",
     "@storybook/nextjs-vite": "^9.1.13",
-    "@tailwindcss/typography": "^0.5.16",
     "@types/leaflet": "^1.9.21",
     "@types/leaflet.fullscreen": "^3.0.3",
     "@types/node": "^20",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/react-syntax-highlighter": "^15.5.13",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "chart.js": "^4.5.1",
@@ -52,8 +50,6 @@
     "postcss-import": "^15.1.0",
     "prismjs": "^1.30.0",
     "react-chartjs-2": "^5.3.0",
-    "react-markdown": "^10.1.0",
-    "react-syntax-highlighter": "^15.6.6",
     "storybook": "^9.1.13",
     "typescript": "^5",
     "vitest": "^3.2.4"
