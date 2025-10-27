@@ -9,9 +9,6 @@
     "outDir": "./dist/lib",
     "rootDir": "./src/ui",
     "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "module": "ESNext",
-    "target": "ES2017",
     "esModuleInterop": true,
     "sourceMap": true
   },
