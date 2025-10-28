@@ -7,19 +7,26 @@ import { Meta } from "@storybook/addon-docs/blocks";
 A Next.js/React UI component library.
 
 - [Fluid UI](#fluid-ui)
-
   - [Overview](#overview)
   - [Features](#features)
   - [Getting Started](#getting-started)
     - [1. Install Next.js and React](#1-install-nextjs-and-react)
-    - [2. Configure Tailwind](#2-configure-tailwind)
-      - [1. Install Tailwind CSS Forms Plugin](#1-install-tailwind-css-forms-plugin)
+    - [2. Configure Tailwind 3](#2-configure-tailwind-3)
       - [2. Configure `tailwind.config.js`](#2-configure-tailwindconfigjs)
   - [Installation](#installation)
+  - [Compatibility](#compatibility)
+    - [Supported stacks \& compatibility matrix](#supported-stacks--compatibility-matrix)
+    - [Node / environment](#node--environment)
+    - [Troubleshooting](#troubleshooting)
+  - [Peer dependencies](#peer-dependencies)
   - [Basic Usage](#basic-usage)
-  - [Optimized Usage](#optimized-usage)
+  - [Charts Usage](#charts-usage)
+    - [Chart Usage Example](#chart-usage-example)
+  - [Map Usage](#map-usage)
+    - [Map Usage Examples](#map-usage-examples)
+      - [Static Map](#static-map)
+      - [Map with marker](#map-with-marker)
   - [Components](#components)
-
     - [Buttons](#buttons)
     - [Inputs](#inputs)
     - [Forms](#forms)
@@ -30,20 +37,20 @@ A Next.js/React UI component library.
     - [Data Visualization](#data-visualization)
     - [Time](#time)
     - [Maps](#maps)
-    - [Social Share](#social-media)
-
+    - [Social Media](#social-media)
   - [Author](#author)
 
 ## Overview
 
-Fluid UI is a comprehensive library of reusable UI components for Next.js/React applications. This library is designed to streamline the development process and ensure consistency across your projects.
+Fluid UI is a comprehensive library of reusable UI components for Next.js/React applications. This
+library is designed to streamline the development process and ensure consistency across projects.
 
 ## Features
 
 - Reusable UI components
-- Built with React
-- Easy to integrate
-- Supports TypeScript
+- Charts
+- Maps
+- Built with React 19, Next.js 15 and TailwindCSS 3
 
 ## Getting Started
 
@@ -60,21 +67,17 @@ npx create-next-app@latest
 When prompted:
 
 - **Use TypeScript?**: Select **Yes** to enable TypeScript in your project.
-- **Use Tailwind CSS?**: Select **Yes** to install and configure Tailwind CSS automatically.
+- **Use TailwindCSS?**: Select **Yes** to install and configure TailwindCSS automatically.
 
-Next.js will then generate the necessary configuration for both **TypeScript** and **Tailwind CSS**, including `tsconfig.json`, `tailwind.config.js`, and PostCSS setup.
+Next.js will then generate the necessary configuration for both **TypeScript** and **TailwindCSS**,
+including `tsconfig.json`, `tailwind.config.js`, and PostCSS setup.
 
-### 2. Configure Tailwind
+### 2. Configure Tailwind 3
 
-To ensure that **Fluid UI** works correctly, you need to configure **Tailwind CSS** and install the **Tailwind Forms** plugin. Follow the steps below:
+To ensure that **Fluid UI** works correctly, you need to configure **TailwindCSS**. Follow the steps
+below:
 
-#### 1. Install Tailwind CSS Forms Plugin
-
-You need to install the Tailwind CSS forms plugin for proper form styling:
-
-```bash
-npm install @tailwindcss/forms
-```
+Note: All current Fluid releases utilize TailwindCSS v3.
 
 #### 2. Configure `tailwind.config.js`
 
@@ -92,7 +95,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    /* Add this line: */
+    /* IMPORTANT: Add this line: */
     "./node_modules/@smitch/fluid/**/*.js",
   ],
   theme: {
@@ -148,10 +151,10 @@ const config: Config = {
     },
   },
   plugins: [
-    /* Tailwind Forms plugin for consistent form styling */
     require("@tailwindcss/forms")({
       strategy: "class",
     }),
+    require("@tailwindcss/typography"),
   ],
 };
 export default config;
@@ -161,6 +164,73 @@ export default config;
 
 ```bash
 npm install @smitch/fluid
+```
+
+## Compatibility
+
+### Supported stacks & compatibility matrix
+
+Use the table below to pick the Fluid major line that matches your app's React / Next.js and
+Tailwind versions. This helps avoid peer dependency conflicts.
+
+- Fluid v4.x (current):
+
+  - React: 19.x
+  - Next.js: 15.x
+  - Tailwind: 3.x
+  - Install: `npm install @smitch/fluid`
+
+- Fluid v3.x:
+  - React: 18.x
+  - Next.js: 14.x (and other releases built on React 18)
+  - Tailwind: 3.x
+  - Install: `npm install @smitch/fluid@^3`
+
+### Node / environment
+
+- Recommended Node: use an LTS release (Node 18/20+ recommended depending on your Next version).
+
+### Troubleshooting
+
+- If a feature (charts, maps) fails because a peer package is missing, install the optional peers
+  indicated in the Peer dependencies section (e.g., `chart.js`, `react-chartjs-2`, `leaflet`).
+
+## Peer dependencies
+
+Fluid is a component library and expects the host app to provide framework/runtime dependencies.
+Below are the packages you should have installed in your project when using `@smitch/fluid`.
+
+Required (framework)
+
+```bash
+npm install react react-dom next
+```
+
+Optional (feature-specific — install only if you use the feature)
+
+Charts (optional)
+
+If you use the chart components, install the Chart.js runtime and the React wrapper:
+
+```bash
+npm install chart.js react-chartjs-2
+```
+
+Maps (optional — Leaflet)
+
+If you use the map components, install Leaflet and React Leaflet:
+
+```bash
+npm install leaflet react-leaflet
+```
+
+TypeScript notes:
+
+- For some setups you may want `@types/leaflet` (install if your build complains about Leaflet
+  types):
+
+```bash
+npm install -D @types/leaflet
 ```
 
 ## Basic Usage
@@ -175,255 +245,245 @@ const App = () => <Button>Click me</Button>;
 export default App;
 ```
 
-## Optimized Usage
+## Charts Usage
 
-To ensure an optimized CSS build, create file `fluid.ts` and export components like so:
+Charts available include:
 
-```jsx
-export {
-  Heading,
-  Loading,
-  Pagination,
-  Alert,
-  Input,
-  Select,
-} from "@smitch/fluid";
+- BarChart
+- BubbleChart
+- LineChart
+- PieChart
+- DoughnutChart
+- ScatterChart
+- RadarChart
+- PolarAreaChart
+- MixedChart
+
+Charts require Chart.js and the React wrapper:
+
+```bash
+npm install chart.js react-chartjs-2
 ```
 
-Import into component:
+### Chart Usage Example
 
 ```jsx
-import { Loading, Alert } from "@/lib/fluid";
+import { BarChart } from "@smitch/fluid/charts";
+
+const App = () => {
+  return (
+    <BarChart
+        data={{
+            datasets: [
+                {
+                    label: 'Min Temperature (°C)',
+                    data: [12, 15, 10, 8, 14],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderWidth: 0,
+                },
+                {
+                    label: 'Max Temperature (°C)',
+                    data: [22, 25, 20, 18, 24],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderWidth: 0,
+                },
+                ...
+            ],
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        }}
+      title = 'Weekly Temperature Ranges',
+      legendposition = 'bottom',
+    />
+  )
+};
+
+export default App;
+```
+
+## Map Usage
+
+Map options include:
+
+- MapMarker
+- MapCircle
+- MapPolygon
+- MapLine
+- MapRectangle
+
+Install Leaflet and React Leaflet (and leaflet.fullscreen if fullscreen control required):
+
+```bash
+npm install leaflet react-leaflet leaflet.fullscreen
+```
+
+```bash
+npm install -D @types/leaflet @types/leaflet.fullscreen
+```
+
+### Map Usage Examples
+
+#### Static Map
+
+```jsx
+import { Map } from "@smitch/fluid/map";
+
+const App = () => {
+  return (
+    <Map
+      center={[51.505, -0.09]}
+      style={{
+        height: "400px",
+        width: "100%",
+      }}
+      tileIndex={0}
+      zoom={16}
+    />
+  );
+};
+
+export default App;
+```
+
+#### Map with marker
+
+```jsx
+import { Map, MapMarker } from "@smitch/fluid/map";
+
+const App = () => {
+  return (
+    <Map
+      attributionControl
+      center={[51.505, -0.09]}
+      fullscreenControl
+      fullscreenControlPosition="topleft"
+      style={{
+        height: "400px",
+        width: "100%",
+      }}
+      tilesControl
+      zoom={13}
+      zoomControl
+    >
+      <MapMarker popupContent="Marker 1" position={[51.505, -0.09]} />
+      <MapMarker position={[51.51, -0.1]} />
+    </Map>
+  );
+};
+
+export default App;
 ```
 
 ## Components
 
 ### Buttons
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button--docs">
-    Button
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button-close-button--docs">
-    Close Button
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-buttons-button-group--docs">
-    Button Group
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button--docs'>Button</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button-close-button--docs'>Close
+  Button</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/buttons-button-group--docs'>Button Group</a>
 
 ### Inputs
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-autocomplete--docs">
-    Autocomplete
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-autocomplete--docs'>
+  	Autocomplete
   </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-checkbox--docs">
-    Checkbox
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-counter--docs">
-    Counter
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-file-upload--docs">
-    File Upload
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-input--docs">
-    Input
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-password-input--docs">
-    Password Input
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-radiog-roup--docs">
-    Radio Group
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-range-input--docs">
-    Range Input
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-search-input--docs">
-    Search Input
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-select--docs">
-    Select
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-switch--docs">
-    Switch
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-textarea--docs">
-    Textarea
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-inputs-text-input--docs">
-    Text Input
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-checkbox--docs'>Checkbox</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-counter--docs'>Counter</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-file-upload--docs'>File Upload</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-input--docs'>Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-password-input--docs'>Password Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-radiog-roup--docs'>Radio Group</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-range-input--docs'>Range Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-search-input--docs'>Search Input</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-select--docs'>Select</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-switch--docs'>Switch</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-textarea--docs'>Textarea</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/inputs-text-input--docs'>Text Input</a>
 
 ### Forms
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-fieldset--docs">
-    Fieldset
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-form--docs">
-    Form
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-forms-label--docs">
-    Label
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-fieldset--docs'>Fieldset</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-form--docs'>Form</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/forms-label--docs'>Label</a>
 
 ### Menus
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-accordion--docs">
-    Accordion
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-breadcrumbs--docs">
-    Breadcrumbs
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-carousel--docs">
-    Carousel
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-drawer--docs">
-    Drawer
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-dropdown--docs">
-    Dropdown
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-navbar--docs">
-    NavBar
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-pagination--docs">
-    Pagination
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-sidebar--docs">
-    Sidebar
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-menus-tabs--docs">
-    Tabs
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-accordion--docs'>Accordion</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-breadcrumbs--docs'>Breadcrumbs</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-carousel--docs'>Carousel</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-drawer--docs'>Drawer</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-dropdown--docs'>Dropdown</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-navbar--docs'>NavBar</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-pagination--docs'>Pagination</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-sidebar--docs'>Sidebar</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/menus-tabs--docs'>Tabs</a>
 
 ### Feedback
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-alert--docs">
-    Alert
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-badge--docs">
-    Badge
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-dialog--docs">
-    Dialog
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-loading--docs">
-    Loading
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-progress--docs">
-    Progress
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-ratings--docs">
-    Ratings
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-ticker--docs">
-    Ticker
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-feedback-toast--docs">
-    Toast
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-alert--docs'>Alert</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-badge--docs'>Badge</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-dialog--docs'>Dialog</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-loading--docs'>Loading</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-progress--docs'>Progress</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-ratings--docs'>Ratings</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-ticker--docs'>Ticker</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/feedback-toast--docs'>Toast</a>
 
 ### Media
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-card--docs">
-    Card
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-figure--docs">
-    Figure
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-gallery--docs">
-    Gallery
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-hero--docs">
-    Hero
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-icon--docs">
-    Icon
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-modal--docs">
-    Modal
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-placeholder--docs">
-    PlaceHolder
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-twitter-embed--docs">
-    Twitter Embed
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-twitter-embed--docs#twitter-timeline">
-    Twitter Timeline
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-video--docs">
-    Video
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-video-player--docs">
-    Video Player
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-media-youtube-embed--docs">
-    YouTube Embed
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-card--docs'>Card</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-figure--docs'>Figure</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-gallery--docs'>Gallery</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-hero--docs'>Hero</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-icon--docs'>Icon</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-modal--docs'>Modal</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-placeholder--docs'>PlaceHolder</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-twitter-embed--docs'>Twitter Embed</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-twitter-embed--docs'>Twitter Timeline</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-video--docs'>Video</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-video-player--docs'>Video Player</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/media-youtube-embed--docs'>YouTube Embed</a>
 
 ### Typography
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-blockquote--docs">
-    Blockquote
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-codeblock--docs">
-    Codeblock
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-typography-heading--docs">
-    Heading
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-blockquote--docs'>Blockquote</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-codeblock--docs'>Codeblock</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/typography-heading--docs'>Heading</a>
 
 ### Data Visualization
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-data-table--docs">
-    Data Table
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-pictogram--docs">
-    Pictogram
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-line-chart--docs">
-    Line Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-bar-chart--docs">
-    Bar Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-mixed-chart--docs">
-    Mixed Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-pie-chart--docs">
-    Pie Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-doughnut-chart--docs">
-    Doughnut Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-radar-chart--docs">
-    Radar Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-polar-area-chart--docs">
-    PolarArea Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-charts-scatter-chart--docs">
-    Scatter Chart
-  </a>
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-data-visualization-stat-bar--docs">
-    Stat Bar
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-data-table--docs'>Data
+  Table</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-pictogram--docs'>Pictogram</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-line-chart--docs'>Line
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-bar-chart--docs'>Bar Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-mixed-chart--docs'>Mixed
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-pie-chart--docs'>Pie Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-doughnut-chart--docs'>Doughnut
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-radar-chart--docs'>Radar
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-polar-area-chart--docs'>PolarArea
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-scatter-chart--docs'>Scatter
+  Chart</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/data-visualization-stat-bar--docs'>Stat Bar</a>
 
 ### Time
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-time-clock--docs">
-    Clock
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/time-clock--docs'>Clock</a>
 
 ### Maps
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-map--docs">Map</a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/maps-map--docs'>Map</a>
 
 ### Social Media
 
-- <a href="https://fluid-ui.vercel.app/?path=/docs/fluid-ui-social-socialshare--docs">
-    Social Media Share
-  </a>
+- <a href='https://fluid-ui.vercel.app/?path=/docs/social-socialshare--docs'>Social Media Share</a>
 
 ## Author
 
-Fluid UI is developed and maintained by [Stephen Mitchell](mailto:sjmitch20@outlook.com).
+Fluid UI is developed and maintained by
+[Stephen Mitchell](https://www.linkedin.com/in/stephen-m-52a3a4192).

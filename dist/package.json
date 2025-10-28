@@ -1,6 +1,6 @@
 {
   "name": "@smitch/fluid",
-  "version": "4.4.6",
+  "version": "4.4.7",
   "description": "A Next/React ui-component libray.",
   "main": "index.js",
   "keywords": [
