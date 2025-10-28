@@ -3,14 +3,18 @@
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
-    "declarationDir": "./dist/lib",
+    "declarationDir": "./dist/types",
     "emitDeclarationOnly": false,
     "removeComments": true,
     "outDir": "./dist/lib",
     "rootDir": "./src/ui",
     "jsx": "react-jsx",
+    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "target": "ES5",
     "esModuleInterop": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "inlineSources": true
   },
   "include": ["src/ui/**/*.ts", "src/ui/**/*.tsx"],
   "exclude": ["node_modules", "src/ui/**/stories/**/*"]

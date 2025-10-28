@@ -1,47 +1,25 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { coverageConfigDefaults, defineConfig } from "vitest/config";
+import preserveDirectives from "rollup-plugin-preserve-directives";
 
-import { defineConfig } from "vitest/config";
-
-import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-
-const dirname =
-  typeof __dirname !== "undefined" ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  build: {
-    chunkSizeWarningLimit: 200,
-    sourcemap: true,
-    rollupOptions: {
-      onwarn(warning, warn) {
-        if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
-          return;
-        }
-        warn(warning);
-      },
-    },
-  },
+  plugins: [preserveDirectives()],
   test: {
-    projects: [
-      {
-        extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-          storybookTest({ configDir: path.join(dirname, ".storybook") }),
-        ],
-        test: {
-          name: "storybook",
-          browser: {
-            enabled: true,
-            headless: true,
-            provider: "playwright",
-            instances: [{ browser: "chromium" }],
-          },
-          setupFiles: [".storybook/vitest.setup.ts"],
-        },
-      },
-    ],
+    env: {
+      NODE_ENV: "test",
+    },
+
+    coverage: {
+      all: false,
+      provider: "istanbul",
+      exclude: [
+        ...coverageConfigDefaults.exclude,
+        "**/__mocks/**",
+        "**/dist/**",
+        "playwright.config.ts",
+        "vitest-setup.ts",
+        "vitest.helpers.ts",
+        "**/*.stories.*",
+      ],
+    },
   },
 });
