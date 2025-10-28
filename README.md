@@ -188,9 +188,6 @@ Tailwind versions. This helps avoid peer dependency conflicts.
 
 ### Troubleshooting
 
-- If you see duplicate React warnings after installing Fluid into an app, run `npm ls react` in the
-  app to locate version conflicts. Ensure your app provides `react` and `react-dom` that satisfy the
-  Fluid `peerDependencies`.
 - If a feature (charts, maps) fails because a peer package is missing, install the optional peers
   indicated in the Peer dependencies section (e.g., `chart.js`, `react-chartjs-2`, `leaflet`).
 
