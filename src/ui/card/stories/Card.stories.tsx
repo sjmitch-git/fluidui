@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Card, CardHeader, CardBody, CardImage, CardFooter } from "..";
 
-import Data from "@/data/dogs.json";
+import Data from "../../../data/dogs.json";
 
 const meta: Meta = {
   title: "Media/Card",
   component: Card,
+  decorators: [
+    (Story) => (
+      <div className="max-w-xl p-4">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     children: {
       table: {

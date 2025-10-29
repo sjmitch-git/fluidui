@@ -55,8 +55,8 @@ import { ButtonGroup } from '@/components/ButtonGroup';
   args: {
     layout: "horizontal",
     rounded: true,
-    outline: "none",
-    outlineColor: "light",
+    outline: "thin",
+    outlineColor: "grey",
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof ButtonGroup>;
@@ -75,7 +75,7 @@ export const Default: Story = {
       </>
     ),
 
-    gap: "none"
+    gap: "none",
   },
 };
 
@@ -108,26 +108,6 @@ export const IconsWithText: Story = {
           <FaPause /> Pause
         </Button>
         <Button btnBackground="dark" size="md">
-          <FaStop /> Stop
-        </Button>
-      </>
-    ),
-  },
-};
-
-export const Outlines: Story = {
-  args: {
-    outline: "thin",
-    outlineColor: "light",
-    children: (
-      <>
-        <Button btnBackground="dark" size="lg">
-          <FaPlay /> Play
-        </Button>
-        <Button btnBackground="dark" size="lg">
-          <FaPause /> Pause
-        </Button>
-        <Button btnBackground="dark" size="lg">
           <FaStop /> Stop
         </Button>
       </>
