@@ -60,7 +60,7 @@ import { Heading } from '@smitch/fluid'
   },
   decorators: [
     (Story) => (
-      <div className="dark:text-light bg-white dark:bg-transparent p-2">
+      <div className="p-2">
         <Story />
       </div>
     ),
