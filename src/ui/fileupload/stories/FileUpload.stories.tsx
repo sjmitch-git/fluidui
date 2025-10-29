@@ -8,7 +8,7 @@ const meta: Meta<typeof FileUpload> = {
   component: FileUpload,
   decorators: [
     (Story) => (
-      <div className="dark:text-light bg-white dark:bg-transparent max-w-sm p-2 mx-auto">
+      <div className="max-w-sm p-2 mx-auto">
         <Story />
       </div>
     ),

@@ -7,7 +7,7 @@ const meta: Meta = {
   component: Counter,
   decorators: [
     (Story) => (
-      <div className="p-4 bg-white dark:bg-transparent dark:text-light">
+      <div className="p-4">
         <Story />
       </div>
     ),

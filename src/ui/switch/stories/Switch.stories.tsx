@@ -6,7 +6,7 @@ const meta = {
   component: Switch,
   decorators: [
     (Story) => (
-      <div className="dark:text-light bg-white dark:bg-transparent max-w-sm p-2 mx-auto">
+      <div className="p-4">
         <Story />
       </div>
     ),

@@ -8,18 +8,11 @@ import { ToastProps } from "./types";
 import { CloseButton } from "..";
 
 const backgrounds = {
-  info: "bg-info",
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-error",
-  primary: "bg-primary",
-  secondary: "bg-secondary",
-  accent: "bg-accent",
-};
-
-const colors = {
-  dark: "text-dark",
-  light: "text-light",
+  info: "bg-info-light",
+  success: "bg-success-light",
+  warning: "bg-warning-light",
+  danger: "bg-error-light",
+  primary: "bg-primary-light",
 };
 
 const horizontals = {
@@ -44,7 +37,6 @@ const roundeds = {
 
 const Toast = ({
   toastBackground = "info",
-  toastColor = "light",
   rounded = "md",
   open = false,
   body,
@@ -92,18 +84,17 @@ const Toast = ({
     const horizontalClasses = horizontals[horizontal];
     const verticalClasses = verticals[vertical];
     const backgroundClasses = backgrounds[toastBackground];
-    const colorClasses = colors[toastColor];
     const roundedClasses = roundeds[rounded];
 
-    return `${horizontalClasses} ${verticalClasses} ${backgroundClasses} ${colorClasses} ${roundedClasses}`;
-  }, [horizontal, vertical, toastColor, toastBackground, rounded]);
+    return `${horizontalClasses} ${verticalClasses} ${backgroundClasses} ${roundedClasses}`;
+  }, [horizontal, vertical, toastBackground, rounded]);
 
   const handleClick = onClick || onClose;
 
   return (
     <aside
       className={twMerge(
-        `toast fixed z-50 py-4 px-6 max-w-64 shadow-lg ${className} ${otherClasses} ${animationClasses}`,
+        `toast fixed z-50 text-dark py-4 px-6 max-w-64 shadow-lg ${className} ${otherClasses} ${animationClasses}`,
         className
       )}
       style={style}

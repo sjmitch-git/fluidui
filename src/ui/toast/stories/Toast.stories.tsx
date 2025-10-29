@@ -97,17 +97,14 @@ export const Default: Story = (args: ToastProps) => {
 Default.args = {
   open: false,
   body: (
-    <p>
+    <p className="font-semibold">
       Some simple <code>HTML</code> <em>message</em>
     </p>
   ),
   horizontal: "center",
   vertical: "middle",
   rounded: "md",
-  toastBackground: "success",
-  toastColor: "dark",
-  closeBackground: "info",
-  closeColor: "light",
+  toastBackground: "info",
   autohide: true,
   autohideDuration: 3000,
   closeOnBlur: false,

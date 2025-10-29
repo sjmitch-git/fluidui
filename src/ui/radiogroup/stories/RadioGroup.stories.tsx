@@ -6,7 +6,7 @@ const meta = {
   component: RadioGroup,
   decorators: [
     (Story) => (
-      <div className="dark:text-light bg-white dark:bg-transparent max-w-sm p-2 mx-auto">
+      <div className="max-w-sm p-2 mx-auto">
         <Story />
       </div>
     ),
@@ -237,7 +237,7 @@ export const HiddenInput: Story = {
     hideInput: true,
     columns: 1,
     size: "md",
-    labelStyles: `p-[.5em] gap-0 rounded-md ring-2 ring-neutral [&:has(input:checked)]:ring-accent [&:has(input:checked)]:bg-info hover:ring-accent overflow-hidden relative`,
+    labelStyles: `p-[.5em] gap-0 rounded-md ring-2 ring-neutral-300 dark:ring-neutral-700 [&:has(input:checked)]:ring-accent [&:has(input:checked)]:bg-info-light [&:has(input:checked)]:dark:bg-info-dark hover:ring-accent overflow-hidden relative`,
   },
 };
 

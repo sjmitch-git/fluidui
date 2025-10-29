@@ -87,13 +87,13 @@ ${modalExample}
       },
     },
   },
-  /*   decorators: [
+  decorators: [
     (Story) => (
-      <div className="p-4 dark:bg-dark dark:text-light min-h-fit">
+      <div className="p-8 max-w-prose mx-auto">
         <Story />
       </div>
     ),
-  ], */
+  ],
   tags: ["autodocs"],
 };
 

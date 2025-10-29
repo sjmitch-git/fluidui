@@ -7,7 +7,7 @@ const meta: Meta<typeof Loading> = {
   component: Loading,
   decorators: [
     (Story) => (
-      <div className="p-8 dark:bg-dark">
+      <div className="p-8">
         <Story />
       </div>
     ),

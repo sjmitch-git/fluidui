@@ -4,6 +4,13 @@ import { Blockquote } from "..";
 const meta = {
   title: "Typography/Blockquote",
   component: Blockquote,
+  decorators: [
+    (Story) => (
+      <div className=" max-w-2xl p-4 mx-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {

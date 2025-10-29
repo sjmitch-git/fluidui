@@ -4,6 +4,13 @@ import { SearchInput } from "..";
 const meta: Meta = {
   title: "Inputs/Search Input",
   component: SearchInput,
+  decorators: [
+    (Story) => (
+      <div className="p-4">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -73,16 +80,16 @@ export const Default: Story = {
     onButtonSubmit: onButtonSubmit,
     label: "Search",
     icon: true,
-    size: "md",
+    size: "lg",
     inputStyles: "border-neutral",
     btnShape: "default",
-    btnBackground: "transparent",
+    btnBackground: "primary",
     btnColor: "current",
     autocomplete: "on",
     placeholder: "Search...",
     autocorrect: "on",
     spellcheck: "on",
-    spacing: "0",
+    spacing: "2",
     rounded: "none",
   },
 };

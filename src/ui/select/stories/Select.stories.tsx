@@ -29,6 +29,13 @@ const months = [
 const meta: Meta = {
   title: "Inputs/Select",
   component: Select,
+  decorators: [
+    (Story) => (
+      <div className="p-4">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -83,7 +90,6 @@ export const Object: Story = {
     options: months,
     name: "months",
     dropdownSize: "md",
-    className: "border-neutral",
     required: true,
     rounded: "md",
     nocaret: false,
@@ -95,7 +101,6 @@ export const Numbers: Story = {
     options: numberOptions,
     name: "numbers",
     dropdownSize: "md",
-    className: "border-neutral",
     required: true,
     defaultValue: 1,
     rounded: "md",

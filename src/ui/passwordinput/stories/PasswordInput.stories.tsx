@@ -6,6 +6,13 @@ const passwordPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,16
 const meta: Meta = {
   title: "Inputs/Password Input",
   component: PasswordInput,
+  decorators: [
+    (Story) => (
+      <div className="max-w-lg mx-auto p-4">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {

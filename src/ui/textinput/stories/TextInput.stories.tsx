@@ -4,6 +4,13 @@ import { TextInput } from "..";
 const meta: Meta = {
   title: "Inputs/Text Input",
   component: TextInput,
+  decorators: [
+    (Story) => (
+      <div className=" max-w-xl p-4 mx-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {

@@ -6,7 +6,7 @@ const meta = {
   component: TextArea,
   decorators: [
     (Story) => (
-      <div className="dark:text-light bg-white dark:bg-transparent max-w-2xl p-2">
+      <div className=" max-w-2xl p-4 mx-auto">
         <Story />
       </div>
     ),

@@ -6,7 +6,7 @@ const meta: Meta = {
   component: Input,
   decorators: [
     (Story) => (
-      <div className="text-dark dark:text-light bg-white dark:bg-transparent max-w-2xl mx-auto p-4">
+      <div className="max-w-lg mx-auto p-4">
         <Story />
       </div>
     ),

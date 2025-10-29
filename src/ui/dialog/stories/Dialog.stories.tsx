@@ -102,13 +102,6 @@ ${codeExample}
       },
     },
   },
-  /* decorators: [
-		(Story) => (
-			<div className='p-4'>
-				<Story />
-			</div>
-		),
-	], */
   tags: ["autodocs"],
 } satisfies Meta<typeof Dialog>;
 
