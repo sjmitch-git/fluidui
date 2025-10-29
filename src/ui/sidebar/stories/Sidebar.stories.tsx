@@ -42,6 +42,21 @@ import { Sidebar } from '@smitch/fluid-ui';
     },
   },
   argTypes: {
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    style: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
     open: {
       table: {
         disable: true,

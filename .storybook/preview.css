@@ -5,6 +5,15 @@
   --light-bg: #f7f7f7;
 }
 
+html,
+body {
+  min-height: 100vh;
+}
+
+.sb-main-padded {
+  padding: 0 !important;
+}
+
 /* .sb-preparing-story,
 .sb-preparing-docs,
 .sb-previewBlock,

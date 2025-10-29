@@ -37,7 +37,7 @@ const meta: Meta = {
   component: Dropdown,
   decorators: [
     (Story) => (
-      <div className="dark:bg-dark dark:text-light p-4 mx-auto">
+      <div className="p-4">
         <Story />
       </div>
     ),
@@ -126,6 +126,7 @@ export const Default: Story = {
     buttonLayout: "circle",
     buttonBackground: "info",
     buttonColor: "light",
+    prefetch: false,
   },
 };
 
@@ -136,6 +137,7 @@ export const Styled: Story = {
     buttonLayout: "circle",
     buttonBackground: "info",
     buttonColor: "light",
+    prefetch: false,
     className:
       "bg-dark text-light dark:bg-light dark:text-dark rounded-full py-3 ps-6 pe-4 border-2 border-accent",
   },

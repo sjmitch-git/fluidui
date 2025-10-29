@@ -6,9 +6,9 @@ import { AlertProps } from "./types";
 
 import { CloseButton, Heading, Badge } from "..";
 
-const defaultStyles = "border-s-8 bg-slate-100 text-dark dark:bg-slate-700 dark:text-light";
+const defaultStyles = "border-s-8 bg-slate-50 text-dark dark:bg-slate-700 dark:text-light";
 const outlineStyles =
-  "border-0 outline outline-2 md:outline-4 bg-white text-dark dark:bg-black dark:text-light";
+  "border-0 outline outline-2 md:outline-4 bg-slate-50 text-dark dark:bg-slate-700 dark:text-light";
 const solidStyles = `solid border-none`;
 
 const statuses = {
@@ -16,13 +16,17 @@ const statuses = {
   success: "border-success outline-success",
   warning: "border-warning outline-warning",
   error: "border-error outline-error",
+  dark: "border-slate-600 outline-slate-600",
+  light: "border-white outline-white",
 };
 
 const solidStatuses = {
-  info: "bg-info-dark",
-  success: "bg-success-dark",
-  warning: "bg-warning-dark",
-  error: "bg-error-dark",
+  info: "bg-info-light text-dark",
+  success: "bg-success-light text-dark",
+  warning: "bg-warning-light text-dark",
+  error: "bg-error-light text-dark",
+  dark: "bg-slate-700 text-light",
+  light: "bg-slate-50 text-dark",
 };
 
 const layouts = {
@@ -54,8 +58,7 @@ const Alert = ({
   const layoutClasses = useMemo(() => layouts[layout], [layout]);
   const roundedClasses = useMemo(() => roundeds[rounded], [rounded]);
   const statusClasses = useMemo(
-    () =>
-      layout === "solid" ? `${solidStatuses[status]} text-light` : `${statuses[status]} text-light`,
+    () => (layout === "solid" ? `${solidStatuses[status]}` : `${statuses[status]}`),
     [layout, status]
   );
 

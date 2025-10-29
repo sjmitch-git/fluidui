@@ -24,6 +24,7 @@ const Dropdown = ({
   className = "",
   style,
   links,
+  prefetch = false,
   buttonLayout = "circle",
   buttonBackground = "transparent",
   buttonColor = "current",
@@ -71,6 +72,7 @@ const Dropdown = ({
             <Link
               href={link.href}
               onClick={closeNav}
+              prefetch={prefetch}
               className="dropdown-link flex flex-row items-center gap-2 no-underline hover:!text-current"
             >
               {link.label}{" "}
@@ -100,7 +102,7 @@ const Dropdown = ({
                   <ul className="ms-0 block w-full border bg-dark text-light dark:bg-light dark:text-dark p-4">
                     {link.links.map((sub) => (
                       <li key={sub.label}>
-                        <Link href={sub.href} key={sub.label} className="">
+                        <Link href={sub.href} key={sub.label} className="" prefetch={prefetch}>
                           {sub.label}
                         </Link>
 
@@ -108,7 +110,7 @@ const Dropdown = ({
                           <ul>
                             {sub.links.map((subsub: LinksProps) => (
                               <li key={subsub.label} className="indent-2">
-                                <Link href={subsub.href} className="">
+                                <Link href={subsub.href} className="" prefetch={prefetch}>
                                   {subsub.label}
                                 </Link>
                               </li>

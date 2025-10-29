@@ -60,6 +60,7 @@ const Carousel = ({
   buttonBackground = "dark",
   buttonColor = "light",
   buttonOutline = true,
+  preloadImages = false,
   children,
 }: CarouselProps) => {
   const [index, setIndex] = useState(0);
@@ -180,7 +181,7 @@ const Carousel = ({
     <>
       <div
         className={twMerge(
-          `carousel group relative flex justify-center overflow-hidden w-auto outline outline-slate-100 dark:outline-slate-500 ${outlineClasses} ${roundedClasses}`,
+          `carousel group relative flex justify-center overflow-hidden w-auto outline outline-slate-300 dark:outline-slate-500 ${outlineClasses} ${roundedClasses}`,
           className
         )}
         onTouchStart={handleTouchStart}
@@ -198,6 +199,7 @@ const Carousel = ({
               data={data}
               caption={caption}
               aspect={aspect}
+              preloadImages={preloadImages}
             />
           ) : (
             <div

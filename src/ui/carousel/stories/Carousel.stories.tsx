@@ -9,7 +9,7 @@ const meta: Meta = {
   component: Carousel,
   decorators: [
     (Story) => (
-      <div className="dark:bg-dark dark:text-light p-4 max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <Story />
       </div>
     ),
@@ -95,6 +95,7 @@ export const Autoplay: Story = {
     gallery: true,
     autoplay: true,
     autoplayDuration: 3000,
+    preloadImages: true,
   },
 };
 
@@ -116,7 +117,12 @@ export const Custom: Story = {
     autoplay: false,
     buttonsPosition: "middle",
     children: Data.map((item, _index) => (
-      <Card key={item.name} className="aspect-[4/3]" outline={false} rounded="none">
+      <Card
+        key={item.name}
+        className="aspect-[4/3] bg-white dark:bg-black"
+        outline={false}
+        rounded="none"
+      >
         <CardBody>
           <CardHeader title={item.name} />
           <p className="line-clamp-5">{item.description}</p>

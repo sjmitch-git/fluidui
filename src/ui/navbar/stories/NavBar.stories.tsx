@@ -84,7 +84,7 @@ const NavBarComponent = (args: NavBarProps) => <NavBar {...args} />;
 
 const ExampleContent = () => {
   return (
-    <article className="p-4 mb-12">
+    <article className="p-4 mb-12 max-w-prose mx-auto">
       <h1 className="font-semibold text-4xl mb-4">Page Example</h1>
       <p className="mb-8">
         Bacon ipsum dolor amet pork loin excepteur pork, jerky ground round shank burgdoggen strip
@@ -169,7 +169,7 @@ export const WithLogin: Story = {
     },
   },
   render: (args) => (
-    <div className="relative -top-4 -left-0 dark:text-light dark:bg-dark">
+    <div className="relative -top-4 -left-0">
       <NavBarWithLogin {...args} />
       <ExampleContent />
     </div>
@@ -216,7 +216,7 @@ const NavBarWithLogin = (args: NavBarProps) => {
           defaultActiveId="tab1"
           className="px-0"
         >
-          <div id="tab1" title="Log-in">
+          <div id="tab1" data-title="Log-in">
             <div>
               <Form
                 {...LoginForm.args}
@@ -226,7 +226,7 @@ const NavBarWithLogin = (args: NavBarProps) => {
               />
             </div>
           </div>
-          <div id="tab2" title="Register">
+          <div id="tab2" data-title="Register">
             <div>
               <RegisterForm
                 {...Register.args}

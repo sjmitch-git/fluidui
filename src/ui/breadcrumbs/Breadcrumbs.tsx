@@ -29,6 +29,7 @@ const Breadcrumbs = ({
   homeLabel = "Home",
   separator = "slash",
   activeLabel,
+  prefetch = true,
 }: BreadcrumbsProps) => {
   const sizeClasses = useMemo(() => sizes[size], [size]);
   const separartorContent = useMemo(() => separators[separator], [separator]);
@@ -87,7 +88,9 @@ const Breadcrumbs = ({
             ) : index === paths.length - 1 ? (
               displayPath(activeLabel || path)
             ) : (
-              <Link href={buildHref(path)}>{displayPath(path)}</Link>
+              <Link href={buildHref(path)} prefetch={prefetch}>
+                {displayPath(path)}
+              </Link>
             )}
           </li>
         ))}

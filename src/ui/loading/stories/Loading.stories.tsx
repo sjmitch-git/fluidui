@@ -5,6 +5,13 @@ import { FaCircleArrowDown } from "react-icons/fa6";
 const meta: Meta<typeof Loading> = {
   title: "Feedback/Loading",
   component: Loading,
+  decorators: [
+    (Story) => (
+      <div className="p-8 dark:bg-dark">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     spinner: {
       options: ["bars", "clock", "dots", "pulse", "spindots", "spinner", "wifi"],

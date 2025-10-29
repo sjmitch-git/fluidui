@@ -1,19 +1,9 @@
 import type { Preview } from "@storybook/nextjs-vite";
-// import { themes } from "storybook/theming";
 import { withThemeByClassName } from "@storybook/addon-themes";
-// import { withGlobals } from "./withGlobals";
 import "../src/styles/index.css";
 
 const preview: Preview = {
-  /* globalTypes: {
-    darkMode: {
-      defaultValue: true,
-    },
-  }, */
   parameters: {
-    /*  docs: {
-      theme: themes.dark,
-    }, */
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -34,7 +24,7 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <div className="preview-decorator">
+        <div className="preview-decorator bg-light dark:bg-dark dark:text-light p-4">
           <Story />
         </div>
       );

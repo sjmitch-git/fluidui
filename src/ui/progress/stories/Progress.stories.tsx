@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Progress } from "..";
 import { Dialog } from "../..";
@@ -87,13 +87,13 @@ ${modalExample}
       },
     },
   },
-  decorators: [
+  /*   decorators: [
     (Story) => (
-      <div className="p-4">
+      <div className="p-4 dark:bg-dark dark:text-light min-h-fit">
         <Story />
       </div>
     ),
-  ],
+  ], */
   tags: ["autodocs"],
 };
 

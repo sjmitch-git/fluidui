@@ -7,7 +7,7 @@ const meta: Meta = {
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div className="bg-transparent dark:bg-dark dark:text-light p-4">
+      <div className="p-4">
         <Story />
       </div>
     ),

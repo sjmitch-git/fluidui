@@ -208,12 +208,12 @@ const ModalDialogComponent = (args: DialogProps) => {
           defaultActiveId="tab1"
           className="px-4"
         >
-          <div id="tab1" title="Log-in">
+          <div id="tab1" data-title="Log-in">
             <div className="py-4">
               {<Form {...LoginForm.args} onCancel={handleClose} onsubmit={handleSubmit} />}
             </div>
           </div>
-          <div id="tab2" title="Register">
+          <div id="tab2" data-title="Register">
             <div className="py-4">
               {
                 <RegisterForm

@@ -8,7 +8,7 @@ export interface AlertProps extends BadgeProps {
   className?: string;
   style?: React.CSSProperties;
   title?: string;
-  status?: "info" | "success" | "warning" | "error";
+  status?: "info" | "success" | "warning" | "error" | "dark" | "light";
   message: React.ReactNode;
   layout?: "default" | "solid" | "outline";
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;

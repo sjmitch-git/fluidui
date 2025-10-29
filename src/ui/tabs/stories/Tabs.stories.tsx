@@ -116,7 +116,7 @@ import { Tabs } from '@smitch/fluid-ui'
   },
   decorators: [
     (Story) => (
-      <div className="dark:text-light dark:bg-dark p-4 max-w-xl mx-auto">
+      <div className="p-4 max-w-xl mx-auto">
         <Story />
       </div>
     ),
@@ -154,10 +154,10 @@ const profileContent = (handleCancel: () => void) => {
   return (
     <>
       <div id="tab1" data-title="Log-in">
-        <div className="p-2">{<Form {...LoginForm.args} onCancel={handleCancel} />}</div>
+        <div className="p-4">{<Form {...LoginForm.args} onCancel={handleCancel} />}</div>
       </div>
       <div id="tab2" data-title="Register">
-        <div className="p-2">
+        <div className="p-4">
           {
             <RegisterForm
               {...Register.args}

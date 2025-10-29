@@ -70,7 +70,7 @@ export const Default: Story = {
 
 Default.decorators = [
   (Story) => (
-    <div className="relative dark:text-light bg-white dark:bg-transparent p-2">
+    <div className="relative dark:text-light dark:bg-dark p-4 mx-auto max-w-xl">
       <Heading level={2} className="relative">
         Latest Post <Story />
       </Heading>
