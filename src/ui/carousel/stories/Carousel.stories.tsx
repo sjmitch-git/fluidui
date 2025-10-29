@@ -2,11 +2,18 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Carousel } from "..";
 import { Card, CardHeader, CardBody, CardFooter } from "../..";
 
-import Data from "@/data/dogs.json";
+import Data from "../../../data/dogs.json";
 
 const meta: Meta = {
   title: "Menus/Carousel",
   component: Carousel,
+  decorators: [
+    (Story) => (
+      <div className="dark:bg-dark dark:text-light p-4 max-w-2xl mx-auto">
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     aspect: "landscape",
     outline: "thin",
@@ -15,7 +22,7 @@ const meta: Meta = {
     buttonsPosition: "middle",
     buttonLayout: "circle",
     buttonIcon: "chevron",
-    buttonSize: "md",
+    buttonSize: "lg",
     buttonBackground: "dark",
     buttonColor: "light",
     buttonOutline: true,
@@ -79,6 +86,14 @@ export const Default: Story = {
   args: {
     gallery: true,
     autoplay: false,
+    autoplayDuration: 3000,
+  },
+};
+
+export const Autoplay: Story = {
+  args: {
+    gallery: true,
+    autoplay: true,
     autoplayDuration: 3000,
   },
 };

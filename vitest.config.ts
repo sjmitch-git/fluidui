@@ -1,8 +1,6 @@
 import { coverageConfigDefaults, defineConfig } from "vitest/config";
-import preserveDirectives from "rollup-plugin-preserve-directives";
 
 export default defineConfig({
-  plugins: [preserveDirectives()],
   test: {
     env: {
       NODE_ENV: "test",

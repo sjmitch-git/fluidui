@@ -1,11 +1,36 @@
 :root {
-  --dark-bg: #1b1c1d;
+  --black: #1b1c1d;
+  --dark-bg: #222425;
+  --white: #ffffff;
+  --light-bg: #f7f7f7;
 }
 
-.sb-preparing-story,
+/* .sb-preparing-story,
 .sb-preparing-docs,
 .sb-previewBlock,
 .css-mzrf51,
 .preview-decorator {
   background-color: var(--dark-bg) !important;
+} */
+
+/* .css-kydxqj,
+.sb-preparing-story,
+.sb-preparing-docs {
+  background-color: transparent !important;
 }
+
+.css-6fo0os {
+  background-color: var(--light-bg) !important;
+}
+
+.dark .css-6fo0os {
+  background-color: var(--dark-bg) !important;
+}
+
+.docs-story {
+  background-color: var(--light-bg) !important;
+}
+
+.dark .docs-story {
+  background-color: var(--dark-bg) !important;
+} */

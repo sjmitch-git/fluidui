@@ -6,7 +6,7 @@ import { AlertProps } from "./types";
 
 import { CloseButton, Heading, Badge } from "..";
 
-const defaultStyles = "border-s-8 bg-white text-dark dark:bg-black dark:text-light";
+const defaultStyles = "border-s-8 bg-slate-100 text-dark dark:bg-slate-700 dark:text-light";
 const outlineStyles =
   "border-0 outline outline-2 md:outline-4 bg-white text-dark dark:bg-black dark:text-light";
 const solidStyles = `solid border-none`;

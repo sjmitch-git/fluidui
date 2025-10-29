@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Accordion, AccordionItem } from "..";
 import { Label, Input } from "../..";
 import { AccordionProps } from "../types";
 
-import Data from "@/data/dogs.json";
+import Data from "../../../data/dogs.json";
 
 const meta: Meta = {
   title: "Menus/Accordion",
   component: Accordion,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div className="max-w-prose mx-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -56,6 +63,7 @@ export const Default: Story = {
     data: Data,
     icon: "symbol",
     iconPosition: "right",
+    iconColor: "current",
     layout: "default",
     opened: "1",
     size: "md",

@@ -14,6 +14,13 @@ const defaultCode = `<Alert
 const meta: Meta = {
   title: "Feedback/Alert",
   component: Alert,
+  decorators: [
+    (Story) => (
+      <div className="max-w-2xl mx-auto p-4 bg-light dark:bg-dark">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -146,6 +153,6 @@ export const Badge: Story = {
     badgeBackground: "warning",
     badgeColor: "light",
     status: "warning",
-    layout: "outline"
+    layout: "outline",
   },
 };

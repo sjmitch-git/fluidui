@@ -1,14 +1,14 @@
-import { addons, types } from "storybook/manager-api";
+import { addons } from "storybook/manager-api";
 import theme from "./theme";
 
-import { ADDON_ID, TOOL_ID } from "./constants";
-import { Tool } from "./Tool";
+/* import { ADDON_ID, TOOL_ID } from "./constants";
+import { Tool } from "./Tool"; */
 
 addons.setConfig({
   theme: theme,
 });
 
-addons.register(ADDON_ID, () => {
+/* addons.register(ADDON_ID, () => {
   addons.add(TOOL_ID, {
     type: types.TOOL,
     title: "Tailwind dark mode",
@@ -16,4 +16,4 @@ addons.register(ADDON_ID, () => {
       !!viewMode?.match(/^(story|docs)$/),
     render: Tool,
   });
-});
+}); */

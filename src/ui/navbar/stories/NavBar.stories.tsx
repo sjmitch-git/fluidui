@@ -125,7 +125,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div className="relative -top-4 -left-0 dark:text-light bg-white dark:bg-transparent">
+    <div className="relative -top-4 -left-0 dark:text-light dark:bg-dark">
       <NavBarComponent {...args} />
       <ExampleContent />
     </div>
@@ -169,7 +169,7 @@ export const WithLogin: Story = {
     },
   },
   render: (args) => (
-    <div className="relative -top-4 -left-0 dark:text-light bg-white dark:bg-transparent">
+    <div className="relative -top-4 -left-0 dark:text-light dark:bg-dark">
       <NavBarWithLogin {...args} />
       <ExampleContent />
     </div>

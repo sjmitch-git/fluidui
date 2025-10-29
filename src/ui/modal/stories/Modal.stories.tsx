@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Modal } from "..";
 import { ModalProps } from "../types";
-import Data from "@/data/dogs.json";
+import Data from "../../../data/dogs.json";
 
 const data = Data[0];
 

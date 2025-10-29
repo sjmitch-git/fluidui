@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { DataTable } from "..";
 
-import data from "@/data/carts.json";
+import data from "../../../data/carts.json";
 
 const meta: Meta = {
   title: "Data Visualization/Data Table",
@@ -37,7 +37,7 @@ import { DataTable } from '@smitch/fluid-ui'
 
 ### Import Data:
 \`\`\`jsx
-import data from '@/data/countries.json' // modify path as required
+import data from '@/data/carts.json' // modify path as required
 \`\`\`
 
 ### Example Usage:

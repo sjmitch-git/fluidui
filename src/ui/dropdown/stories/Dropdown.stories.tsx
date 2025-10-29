@@ -37,7 +37,7 @@ const meta: Meta = {
   component: Dropdown,
   decorators: [
     (Story) => (
-      <div className="bg-white dark:bg-transparent dark:text-light p-4">
+      <div className="dark:bg-dark dark:text-light p-4 mx-auto">
         <Story />
       </div>
     ),

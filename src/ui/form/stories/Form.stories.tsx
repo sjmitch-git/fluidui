@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Form, Fieldset } from "..";
 import { TextInput, Autocomplete, SearchInput, Select, PasswordInput, Checkbox } from "../..";
 import { Default as Password } from "../../passwordinput/stories/PasswordInput.stories";
-import data from "@/data/countries.json";
+import data from "../../../data/countries.json";
 
 const passwordPattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}";
 

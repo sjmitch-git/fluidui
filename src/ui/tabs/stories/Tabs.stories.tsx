@@ -63,13 +63,6 @@ const TailwindIcon = () => {
   );
 };
 
-const fruits = [
-  { name: "apples", emoji: "🍏", body: "<p>Some content about <strong>apples</strong></p>" },
-  { name: "bananas", emoji: "🍌", body: "<p>Some content about <strong>bananas</strong></p>" },
-  { name: "grapes", emoji: "🍇", body: "<p>Some content about <strong>grapes</strong></p>" },
-  { name: "lemons", emoji: "🍋", body: "<p>Some content about <strong>lemons</strong></p>" },
-];
-
 const tech = [
   {
     name: "ReactJS",
@@ -113,8 +106,8 @@ import { Tabs } from '@smitch/fluid-ui'
     tabsPosition="center"
     contentBorder={true}
 >
-    <div id="tab1" title="Tab 1">Content for Tab 1</div>
-    <div id="tab2" title="Tab 2">Content for Tab 2</div>
+    <div id="tab1" data-title="Tab 1">Content for Tab 1</div>
+    <div id="tab2" data-title="Tab 2">Content for Tab 2</div>
 </Tabs>
 \`\`\`
 `,
@@ -123,7 +116,7 @@ import { Tabs } from '@smitch/fluid-ui'
   },
   decorators: [
     (Story) => (
-      <div className="dark:text-light">
+      <div className="dark:text-light dark:bg-dark p-4 max-w-xl mx-auto">
         <Story />
       </div>
     ),
@@ -141,16 +134,16 @@ const handleCancel = () => {
 const defaultContent = () => {
   return (
     <>
-      <div id="tab1" title="Tab 1">
+      <div id="tab1" data-title="Tab 1">
         <div className="p-4">Tab 1 content</div>
       </div>
-      <div id="tab2" title="Tab 2">
+      <div id="tab2" data-title="Tab 2">
         <div className="p-4">Tab 2 content</div>
       </div>
-      <div id="tab3" title="Tab 3">
+      <div id="tab3" data-title="Tab 3">
         <div className="p-4">Tab 3 content</div>
       </div>
-      <div id="tab4" title="Tab 4">
+      <div id="tab4" data-title="Tab 4">
         <div className="p-4">Tab 4 content</div>
       </div>
     </>
@@ -160,10 +153,10 @@ const defaultContent = () => {
 const profileContent = (handleCancel: () => void) => {
   return (
     <>
-      <div id="tab1" title="Log-in">
+      <div id="tab1" data-title="Log-in">
         <div className="p-2">{<Form {...LoginForm.args} onCancel={handleCancel} />}</div>
       </div>
-      <div id="tab2" title="Register">
+      <div id="tab2" data-title="Register">
         <div className="p-2">
           {
             <RegisterForm
@@ -182,9 +175,16 @@ const profileContent = (handleCancel: () => void) => {
   );
 };
 
+const fruits = [
+  { name: "apples", emoji: "🍏", body: "<p>Some content about <strong>apples</strong></p>" },
+  { name: "bananas", emoji: "🍌", body: "<p>Some content about <strong>bananas</strong></p>" },
+  { name: "grapes", emoji: "🍇", body: "<p>Some content about <strong>grapes</strong></p>" },
+  { name: "lemons", emoji: "🍋", body: "<p>Some content about <strong>lemons</strong></p>" },
+];
+
 const emojisContent = () => {
   return fruits.map((item, index) => (
-    <div id={`tab${index}`} key={`tab${index}`} title={item.emoji} className="p-4">
+    <div id={`tab${index}`} key={`tab${index}`} data-title={item.emoji} className="p-4">
       <h3 className="uppercase font-bold text-lg mb-2">{item.name}</h3>
       <div dangerouslySetInnerHTML={{ __html: item.body }} />
     </div>
@@ -193,7 +193,7 @@ const emojisContent = () => {
 
 const techContent = () => {
   return tech.map((item, index) => (
-    <div id={`tab${index}`} key={`tab${index}`} title={item.name} className="p-4">
+    <div id={`tab${index}`} key={`tab${index}`} data-title={item.name} className="p-4">
       <h3 className="uppercase font-bold text-lg mb-2">{item.name}</h3>
       <div dangerouslySetInnerHTML={{ __html: item.body }} />
     </div>
@@ -277,7 +277,6 @@ export const LoginRegister: Story = {
     minimalTabs: true,
     contentBorder: false,
   },
-  // decorators: Default.decorators,
   parameters: {
     actions: {
       argTypesRegex: "^on.*",

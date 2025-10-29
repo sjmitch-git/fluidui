@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { LatLngExpression } from "leaflet";
 import L from "leaflet";
 import { Map, MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle } from "..";
-import { States } from "@/data/states";
+import { States } from "../../../data/states";
 
 const meta: Meta<typeof Map> = {
   title: "Geo/Map",
@@ -33,9 +33,23 @@ in a flexible and responsive interface.
 
 ### Example Usage
 \`\`\`jsx
-<Map center={[51.505, -0.09]} zoom={13} style={{ height: '400px', width: '100%' }}>
-  <MapMarker position={[51.505, -0.09]} popupContent="Hello World!" />
-</Map>
+import { Map } from "@smitch/fluid/map";
+
+const App = () => {
+  return (
+    <Map
+      center={[51.505, -0.09]}
+      style={{
+        height: "400px",
+        width: "100%",
+      }}
+      tileIndex={0}
+      zoom={16}
+    />
+  );
+};
+
+export default App;
 \`\`\`
         `,
       },

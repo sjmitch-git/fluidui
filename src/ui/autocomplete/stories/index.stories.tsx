@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Autocomplete } from "..";
 
-import data from "@/data/countries.json";
+import data from "../../../data/countries.json";
 
 const meta: Meta = {
   title: "Inputs/Autocomplete",

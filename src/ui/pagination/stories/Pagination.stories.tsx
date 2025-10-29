@@ -9,7 +9,7 @@ const meta: Meta = {
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div className="p-4 bg-white dark:bg-transparent dark:text-light">
+      <div className="p-4 dark:bg-dark dark:text-light">
         <Story />
       </div>
     ),
@@ -66,9 +66,9 @@ export const Default: Story = (args: PaginationProps) => {
 Default.args = {
   layout: "horizontal",
   rounded: true,
-  size: "md",
-  gap: "none",
-  btnShape: "default",
+  size: "lg",
+  gap: "md",
+  btnShape: "circle",
   btnBackground: "info",
   btnColor: "dark",
   results: 69,
