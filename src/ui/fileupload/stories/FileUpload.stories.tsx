@@ -52,15 +52,10 @@ import { FileUpload } from '@smitch/breeze';
       control: "text",
       defaultValue: "Upload",
     },
-    accept: {
-      table: {
-        disable: true,
-      },
-    },
     showMultiple: {
       description: "Whether multiple files can be selected at once.",
       control: "boolean",
-      defaultValue: true,
+      defaultValue: false,
     },
     multipleLabel: {
       description: "Label displayed when multiple files are selected.",
@@ -69,7 +64,7 @@ import { FileUpload } from '@smitch/breeze';
     },
     icon: {
       description:
-        "Whether to show an icon instead of text in the upload button.",
+        "Whether to show an icon in the upload button.",
       control: "boolean",
       defaultValue: true,
     },
@@ -86,19 +81,6 @@ import { FileUpload } from '@smitch/breeze';
         disable: true,
       },
     },
-    setFiles: {
-      description: "Custom function to handle setting the files externally.",
-      table: {
-        disable: true,
-      },
-    },
-    files: {
-      description: "The current list of files selected for upload.",
-      defaultValue: [],
-      table: {
-        defaultValue: { summary: "[]" },
-      },
-    },
   },
 };
 
@@ -107,51 +89,30 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args: FileUploadProps) => {
-    const [files, setFiles] = useState<File[]>([]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const newFiles = event.target.files ? Array.from(event.target.files) : [];
-      setFiles(newFiles);
-      console.log("Selected files:", newFiles);
-    };
-
-    const handleSetFiles = (newFiles: File[]) => {
-      console.log("Updated files:", newFiles);
-      setFiles(newFiles);
+      console.log("Selected files:", newFiles[0]);
     };
 
     return (
       <FileUpload
         {...args}
         onChange={handleChange}
-        setFiles={handleSetFiles}
-        files={files}
       />
     );
   },
 
   args: {
     label: "Upload",
-    accept: "image/*",
-    showMultiple: true,
-    multipleLabel: "Multiple",
+    accept: "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-word.document.macroEnabled.12,application/rtf,text/plain,.pdf,.doc,.docx,.docm,.rtf,.txt",
+    showMultiple: false,
     icon: true,
-    size: "md",
-    files: [],
+    size: "md"
   },
 
   argTypes: {
     onChange: {
-      table: {
-        disable: true,
-      },
-    },
-    setFiles: {
-      table: {
-        disable: true,
-      },
-    },
-    files: {
       table: {
         disable: true,
       },

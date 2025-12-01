@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { LabelProps } from "./types";
 
 const fileClasses =
-  "bg-dark text-light dark:bg-light dark:text-dark rounded-md p-[1em] flex items-center justify-center whitespace-nowrap !w-auto";
+  "bg-dark text-light dark:bg-light dark:text-dark rounded-md p-[1em] flex gap-4 items-center justify-center whitespace-nowrap !w-auto";
 
 const requiredClasses =
   "after:text-warning-dark after:dark:text-warning-light after:content-['_*']";
@@ -69,7 +69,7 @@ const Label = ({
           type === "file" ? fileClasses : ""
         } ${required ? requiredClasses : ""}`}
       >
-        {label} {type === "file" && <span className="sr-only">Upload file icon</span>}
+        {label}
       </span>
       <div
         className={`${widthClasses(

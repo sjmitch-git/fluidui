@@ -43,9 +43,9 @@ export interface FileUploadProps {
 	accept?: string
 	showMultiple?: boolean
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-	setFiles?: (files: File[]) => void
+	// setFiles?: (files: File[]) => void
 	icon?: boolean
-	files: File[]
+	// files: File[]
 }
 
 export interface AcceptTypes {
@@ -54,11 +54,13 @@ export interface AcceptTypes {
 }
 
 export const acceptTypes: AcceptTypes[] = [
-	{ label: 'All Files', value: '*' },
-	{ label: 'Audio Files', value: 'audio/*' },
-	{ label: 'Image Files', value: 'image/*' },
-	{ label: 'Video Files', value: 'video/*' },
-	{ label: 'PDF Documents', value: 'application/pdf' },
-	{ label: 'Text Documents', value: '.txt, .doc, .docx, .odt, .rtf' },
-	{ label: 'Excel Files', value: 'application/vnd.ms-excel' },
+  { label: 'All Files', value: '*/*' },
+  { label: 'Images', value: 'image/*' },
+  { label: 'Videos', value: 'video/*' },
+  { label: 'Audio', value: 'audio/*' },
+  { label: 'PDF Documents', value: 'application/pdf' },
+  { label: 'Word Documents', value: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+  { label: 'Excel Files', value: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' },
+  { label: 'Text Files', value: 'text/*,.txt,.csv' },
+  { label: 'ZIP Archives', value: 'application/zip,application/x-zip-compressed' },
 ]

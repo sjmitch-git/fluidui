@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge'
 
 import Files from './Files'
 import { FileUploadProps, acceptTypes } from './types'
-import { Label, Input, Select, Checkbox } from '..'
+import { Label, Input, Select, Checkbox, Switch } from '..'
 
 import { FaUpload } from 'react-icons/fa'
 
@@ -19,24 +19,20 @@ const sizes = {
 const FileUpload = ({
 	className = '',
 	size = 'md',
-	accept = '*',
+	accept,
 	label = 'File Upload',
 	icon,
 	onChange,
-	setFiles,
 	showMultiple = false,
-	multipleLabel = 'Select Multiple',
+	multipleLabel = 'Multiple',
 }: FileUploadProps) => {
 	const [files, setLocalFiles] = useState<FileList | null>(null)
 	const [multiple, setMultiple] = useState(false)
-	const [selectedAcceptType, setSelectedAcceptType] = useState<string>(accept)
+	const [selectedAcceptType, setSelectedAcceptType] = useState<string>(accept || '*')
 
 	const handleAcceptTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedAcceptType(event.target.value)
 		setLocalFiles(null)
-		if (setFiles) {
-			setFiles([])
-		}
 	}
 
 	const sizeClasses = useMemo(() => sizes[size], [size])
@@ -59,24 +55,39 @@ const FileUpload = ({
 			const dataTransfer = new DataTransfer()
 			updatedFiles.forEach((file) => dataTransfer.items.add(file))
 			setLocalFiles(dataTransfer.files)
-			if (setFiles) {
-				setFiles(updatedFiles)
-			}
 		}
 	}
+
+	const defaultLabel = 'Upload File';
+	const hiddenLabel = <span className="sr-only">{defaultLabel}</span>;
+
+	const GetLabel = () => {
+		const hasVisibleLabel  = label;
+
+		if (!icon) {
+			return hasVisibleLabel || defaultLabel;
+		}
+
+		return (
+			<>
+			<FaUpload aria-hidden="true" />
+			{hasVisibleLabel ? label : hiddenLabel}
+			</>
+		);
+	};
 
 	return (
 		<div
 			className={twMerge(`fileupload group overflow-hidden ${sizeClasses}`, className)}
 			data-testid='fileupload'
 		>
-			<div className='flex flex-row gap-2'>
+			<div className='flex flex-row flex-wrap gap-2'>
 				<Label
-					label={icon ? <FaUpload title={label} /> : label}
+					label={<GetLabel />}
 					layout='col'
 					size={size}
 					type='file'
-					className='items-center !flex !flex-row !w-auto'
+					className='items-center !flex !flex-row !w-auto gap-4'
 				>
 					<Input
 						accept={selectedAcceptType}
@@ -87,7 +98,9 @@ const FileUpload = ({
 						size={size}
 					/>
 				</Label>
-				<div className='grid grid-cols-2 gap-4 items-center'>
+
+				<div className='flex gap-4 items-center'>
+					{!accept &&
 					<Select
 						options={acceptTypes}
 						id='acceptType'
@@ -98,15 +111,15 @@ const FileUpload = ({
 						className='border-neutral'
 						rounded='md'
 					/>
+}
 					{showMultiple && (
 						<div className=''>
-							<Checkbox
+							<Switch
 								label={multipleLabel}
 								name='multiple'
-								size={size}
 								onChange={handleChange}
-								className='!gap-2 border-neutral'
-								rounded='full'
+								shape="circle"
+								thin
 							/>
 						</div>
 					)}
