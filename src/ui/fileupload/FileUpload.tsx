@@ -1,138 +1,158 @@
-'use client'
+"use client";
 
-import React, { useState, useMemo } from 'react'
-
-import { twMerge } from 'tailwind-merge'
-
-import Files from './Files'
-import { FileUploadProps, acceptTypes } from './types'
-import { Label, Input, Select, Checkbox, Switch } from '..'
-
-import { FaUpload } from 'react-icons/fa'
+import React, { useState, useMemo, forwardRef, useImperativeHandle } from "react";
+import { twMerge } from "tailwind-merge";
+import Files from "./Files";
+import { FileUploadProps, acceptTypes } from "./types";
+import { Label, Input, Select, Switch } from "..";
+import { FaUpload } from "react-icons/fa";
 
 const sizes = {
-	md: 'text-base',
-	lg: 'text-lg',
-	xl: 'text-xl',
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+} as const;
+
+// Define what methods we expose via ref
+export interface FileUploadRef {
+  clear: () => void;
+  getFiles: () => FileList | null;
 }
 
-const FileUpload = ({
-	className = '',
-	size = 'md',
-	accept,
-	label = 'File Upload',
-	icon,
-	onChange,
-	showMultiple = false,
-	multipleLabel = 'Multiple',
-}: FileUploadProps) => {
-	const [files, setLocalFiles] = useState<FileList | null>(null)
-	const [multiple, setMultiple] = useState(false)
-	const [selectedAcceptType, setSelectedAcceptType] = useState<string>(accept || '*')
+const FileUpload = forwardRef<FileUploadRef, FileUploadProps>(
+  (
+    {
+      className = "",
+      size = "md",
+      accept,
+      label = "File Upload",
+      icon,
+      onChange,
+      showMultiple = false,
+      multipleLabel = "Multiple",
+    },
+    ref
+  ) => {
+    const [files, setLocalFiles] = useState<FileList | null>(null);
+    const [multiple, setMultiple] = useState(false);
+    const [selectedAcceptType, setSelectedAcceptType] = useState<string>(accept || "*");
 
-	const handleAcceptTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		setSelectedAcceptType(event.target.value)
-		setLocalFiles(null)
-	}
+    // Expose methods to parent via ref
+    useImperativeHandle(ref, () => ({
+      clear: () => {
+        setLocalFiles(null);
+        // Reset the actual <input> element too
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
+      },
+      getFiles: () => files,
+    }));
 
-	const sizeClasses = useMemo(() => sizes[size], [size])
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setMultiple(event.target.checked)
-	}
+    const handleAcceptTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedAceptType(event.target.value);
+      setLocalFiles(null);
+      if (inputRef.current) inputRef.current.value = "";
+    };
 
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const files = event.target.files
-		if (files) {
-			setLocalFiles(files)
-			if (onChange) onChange(event)
-		}
-	}
+    const handleMultipleChange = (checked: boolean) => {
+      setMultiple(checked);
+    };
 
-	const deleteFile = (fileToDelete: File) => {
-		if (files) {
-			const updatedFiles = Array.from(files).filter((file) => file !== fileToDelete)
-			const dataTransfer = new DataTransfer()
-			updatedFiles.forEach((file) => dataTransfer.items.add(file))
-			setLocalFiles(dataTransfer.files)
-		}
-	}
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = event.target.files;
+      if (selectedFiles && selectedFiles.length > 0) {
+        setLocalFiles(selectedFiles);
+        onChange?.(event);
+      }
+    };
 
-	const defaultLabel = 'Upload File';
-	const hiddenLabel = <span className="sr-only">{defaultLabel}</span>;
+    const deleteFile = (fileToDelete: File) => {
+      if (!files) return;
 
-	const GetLabel = () => {
-		const hasVisibleLabel  = label;
+      const updated = Array.from(files).filter((f) => f !== fileToDelete);
+      const dt = new DataTransfer();
+      updated.forEach((f) => dt.items.add(f));
 
-		if (!icon) {
-			return hasVisibleLabel || defaultLabel;
-		}
+      setLocalFiles(dt.files);
 
-		return (
-			<>
-			<FaUpload aria-hidden="true" />
-			{hasVisibleLabel ? label : hiddenLabel}
-			</>
-		);
-	};
+      // Update the actual input
+      if (inputRef.current) {
+        inputRef.current.files = dt.files;
+      }
+    };
 
-	return (
-		<div
-			className={twMerge(`fileupload group overflow-hidden ${sizeClasses}`, className)}
-			data-testid='fileupload'
-		>
-			<div className='flex flex-row flex-wrap gap-2'>
-				<Label
-					label={<GetLabel />}
-					layout='col'
-					size={size}
-					type='file'
-					className='items-center !flex !flex-row !w-auto gap-4'
-				>
-					<Input
-						accept={selectedAcceptType}
-						name='file'
-						type='file'
-						onChange={handleFileChange}
-						multiple={multiple}
-						size={size}
-					/>
-				</Label>
+    const sizeClasses = useMemo(() => sizes[size], [size]);
 
-				<div className='flex gap-4 items-center'>
-					{!accept &&
-					<Select
-						options={acceptTypes}
-						id='acceptType'
-						value={selectedAcceptType}
-						defaultValue={accept}
-						onChange={handleAcceptTypeChange}
-						dropdownSize={size}
-						className='border-neutral'
-						rounded='md'
-					/>
-}
-					{showMultiple && (
-						<div className=''>
-							<Switch
-								label={multipleLabel}
-								name='multiple'
-								onChange={handleChange}
-								shape="circle"
-								thin
-							/>
-						</div>
-					)}
-				</div>
-			</div>
-			{files && files.length > 0 && (
-				<Files
-					files={Array.from(files)}
-					deleteFile={deleteFile}
-				/>
-			)}
-		</div>
-	)
-}
+    const GetLabel = () => {
+      if (!icon) return label || "Upload File";
 
-export default FileUpload
+      return (
+        <>
+          <FaUpload aria-hidden="true" className="w-5 h-5" />
+          {label ? label : <span className="sr-only">Upload File</span>}
+        </>
+      );
+    };
+
+    return (
+      <div
+        className={twMerge(`fileupload group overflow-hidden ${sizeClasses}`, className)}
+        data-testid="fileupload"
+      >
+        <div className="flex flex-row flex-wrap gap-4 items-center">
+          <Label
+            label={<GetLabel />}
+            layout="col"
+            size={size}
+            type="file"
+            className="items-center !flex !flex-row !w-auto gap-3 cursor-pointer"
+          >
+            <Input
+              ref={inputRef}
+              accept={selectedAcceptType}
+              name="file"
+              type="file"
+              onChange={handleFileChange}
+              multiple={multiple}
+              size={size}
+              className="hidden"
+            />
+          </Label>
+
+          <div className="flex gap-4 items-center">
+            {!accept && (
+              <Select
+                options={acceptTypes}
+                id="acceptType"
+                value={selectedAcceptType}
+                onChange={handleAcceptTypeChange}
+                dropdownSize={size}
+                className="border-neutral min-w-32"
+                rounded="md"
+              />
+            )}
+            {showMultiple && (
+              <Switch
+                label={multipleLabel}
+                name="multiple"
+                checked={multiple}
+                onChange={handleMultipleChange}
+                shape="circle"
+                thin
+              />
+            )}
+          </div>
+        </div>
+
+        {files && files.length > 0 && <Files files={Array.from(files)} deleteFile={deleteFile} />}
+      </div>
+    );
+  }
+);
+
+FileUpload.displayName = "FileUpload";
+
+export default FileUpload;
