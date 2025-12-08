@@ -13,7 +13,6 @@ const sizes = {
   xl: "text-xl",
 } as const;
 
-// Define what methods we expose via ref
 export interface FileUploadRef {
   clear: () => void;
   getFiles: () => FileList | null;
@@ -37,58 +36,47 @@ const FileUpload = forwardRef<FileUploadRef, FileUploadProps>(
     const [multiple, setMultiple] = useState(false);
     const [selectedAcceptType, setSelectedAcceptType] = useState<string>(accept || "*");
 
-    // Expose methods to parent via ref
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
     useImperativeHandle(ref, () => ({
       clear: () => {
         setLocalFiles(null);
-        // Reset the actual <input> element too
-        if (inputRef.current) {
-          inputRef.current.value = "";
-        }
+        if (inputRef.current) inputRef.current.value = "";
       },
       getFiles: () => files,
     }));
 
-    const inputRef = React.useRef<HTMLInputElement>(null);
-
-    const handleAcceptTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setSelectedAceptType(event.target.value);
+    const handleAcceptTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedAcceptType(e.target.value);
       setLocalFiles(null);
       if (inputRef.current) inputRef.current.value = "";
     };
 
-    const handleMultipleChange = (checked: boolean) => {
-      setMultiple(checked);
+    const handleMultipleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setMultiple(e.target.checked);
     };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const selectedFiles = event.target.files;
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = e.target.files;
       if (selectedFiles && selectedFiles.length > 0) {
         setLocalFiles(selectedFiles);
-        onChange?.(event);
+        onChange?.(e);
       }
     };
 
     const deleteFile = (fileToDelete: File) => {
       if (!files) return;
-
       const updated = Array.from(files).filter((f) => f !== fileToDelete);
       const dt = new DataTransfer();
       updated.forEach((f) => dt.items.add(f));
-
       setLocalFiles(dt.files);
-
-      // Update the actual input
-      if (inputRef.current) {
-        inputRef.current.files = dt.files;
-      }
+      if (inputRef.current) inputRef.current.files = dt.files;
     };
 
     const sizeClasses = useMemo(() => sizes[size], [size]);
 
     const GetLabel = () => {
       if (!icon) return label || "Upload File";
-
       return (
         <>
           <FaUpload aria-hidden="true" className="w-5 h-5" />
@@ -98,10 +86,7 @@ const FileUpload = forwardRef<FileUploadRef, FileUploadProps>(
     };
 
     return (
-      <div
-        className={twMerge(`fileupload group overflow-hidden ${sizeClasses}`, className)}
-        data-testid="fileupload"
-      >
+      <div className={twMerge(`fileupload group overflow-hidden ${sizeClasses}`, className)}>
         <div className="flex flex-row flex-wrap gap-4 items-center">
           <Label
             label={<GetLabel />}
@@ -134,6 +119,7 @@ const FileUpload = forwardRef<FileUploadRef, FileUploadProps>(
                 rounded="md"
               />
             )}
+
             {showMultiple && (
               <Switch
                 label={multipleLabel}
