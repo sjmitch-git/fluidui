@@ -1,5 +1,6 @@
 export { Accordion, AccordionItem } from "./accordion";
 export { Alert } from "./alert";
+export { Avatar } from "./avatar";
 export { Autocomplete } from "./autocomplete";
 export { Badge } from "./badge";
 export { Blockquote } from "./blockquote";
@@ -17,6 +18,7 @@ export { Dialog } from "./dialog";
 export { Dropdown } from "./dropdown";
 export { Figure } from "./figure";
 export { FileUpload } from "./fileupload";
+export type { FileUploadRef } from "./fileupload";
 export { Form, Fieldset, RegisterForm } from "./form";
 export { Gallery } from "./gallery";
 export { Heading } from "./heading";

@@ -47,7 +47,7 @@ export interface AccordionSectionProps {
 
 export interface AccordionItemProps {
   children: React.ReactNode;
-  layoutClasses: string;
+  layoutClasses?: string;
   id: string;
   title: string;
   icon?: "symbol" | "arrow";

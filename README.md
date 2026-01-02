@@ -360,6 +360,7 @@ export default App;
 
 ### Media
 
+- <a href="https://breezeui.site/?path=/docs/media-avatar--docs">Avatar</a>
 - <a href='https://breezeui.site/?path=/docs/media-card--docs'>Card</a>
 - <a href='https://breezeui.site/?path=/docs/media-figure--docs'>Figure</a>
 - <a href='https://breezeui.site/?path=/docs/media-gallery--docs'>Gallery</a>

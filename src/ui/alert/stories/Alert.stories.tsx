@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-
+import Link from "next/link";
 import { Alert } from "..";
 
 import { FaExclamation } from "react-icons/fa6";
@@ -7,7 +7,7 @@ import { FaExclamation } from "react-icons/fa6";
 const defaultCode = `<Alert
   status="info"
   title="Alert Title"
-  message="<p>This is an <strong>important</strong> message for the user.</p>"
+  message="This is an important message for the user."
   layout="default"
 />`;
 
@@ -91,12 +91,64 @@ export const Default: Story = {
   },
   args: {
     status: "info",
-    title: "Alert Title",
+    title: "Information Alert",
+    message: "This is an important message for the user.",
     layout: "default",
     rounded: "md",
-    message:
-      "<p>This is an <strong>important</strong> message for the user. It can be a simple string or <code>html</code> content. <br />Example of a <a href='#'>dummy link</a>.</p>",
     dismissable: false,
+  },
+};
+
+export const RichMessageWithLinks: Story = {
+  name: "Rich Message with Links",
+  args: {
+    status: "info",
+    title: "Welcome",
+    layout: "default",
+  },
+  argTypes: {
+    ...Default.argTypes,
+  },
+  render: (args) => (
+    <Alert
+      {...args}
+      message={
+        <>
+          Welcome back! Go to your{" "}
+          <Link href="/dashboard" className="underline font-medium">
+            dashboard
+          </Link>{" "}
+          or read the{" "}
+          <Link href="/docs" className="underline font-medium">
+            docs
+          </Link>
+          .
+        </>
+      }
+    />
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `<Alert
+  status="success"
+  title="Welcome"
+  message={
+    <>
+      Welcome back! Go to your{" "}
+      <Link href="/dashboard" className="underline font-medium">
+        dashboard
+      </Link>{" "}
+      or read the{" "}
+      <Link href="/docs" className="underline font-medium">
+        docs
+      </Link>.
+    </>
+  }
+/>`,
+        language: "tsx",
+      },
+    },
   },
 };
 
@@ -146,13 +198,16 @@ export const Dismissable: Story = {
   },
 };
 
-export const Badge: Story = {
+export const WithBadge: Story = {
+  name: "With Badge",
   args: {
     ...Default.args,
+    status: "warning",
+    title: "Warning",
+    message: "This alert has an icon badge.",
+    layout: "outline",
     badge: <FaExclamation />,
     badgeBackground: "warning",
     badgeColor: "light",
-    status: "warning",
-    layout: "outline",
   },
 };

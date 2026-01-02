@@ -6,9 +6,9 @@ import { AlertProps } from "./types";
 
 import { CloseButton, Heading, Badge } from "..";
 
-const defaultStyles = "border-s-8 bg-slate-100 text-dark dark:bg-slate-800 dark:text-light";
+const defaultStyles = "border-s-8 bg-white text-dark dark:bg-black dark:text-light";
 const outlineStyles =
-  "border-0 outline outline-2 md:outline-4 bg-slate-100 text-dark dark:bg-slate-800 dark:text-light";
+  "border-0 outline outline-2 md:outline-4 bg-white text-dark dark:bg-black dark:text-light";
 const solidStyles = `solid border-none`;
 
 const statuses = {
@@ -17,7 +17,7 @@ const statuses = {
   warning: "border-warning outline-warning",
   error: "border-error outline-error",
   dark: "border-slate-600 outline-slate-600",
-  light: "border-white outline-white",
+  light: "border-white outline-slate-200",
 };
 
 const solidStatuses = {
@@ -89,14 +89,8 @@ const Alert = ({
           {title}
         </Heading>
       )}
-      {typeof message === "string" ? (
-        <div
-          className="text-base md:text-lg lg:text-xl mb-[1em] mt-[1em]"
-          dangerouslySetInnerHTML={{ __html: message }}
-        ></div>
-      ) : (
-        <div className="text-base md:text-lg lg:text-xl mb-[1em] mt-[1em]">{message}</div>
-      )}
+
+      <div className="text-base md:text-lg lg:text-xl mb-[1em] mt-[1em]">{message}</div>
 
       {dismissable && (
         <CloseButton size="md" onClick={onClick} className="absolute right-2 top-2" />
