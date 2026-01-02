@@ -40,7 +40,7 @@ Live demo: [https://breezeui.site](https://breezeui.site)
 
 ## Overview
 
-Breeze UI is a comprehensive library of reusable UI components for Next.js/React applications. This
+Breeze UI is a comprehensive library of reusable UI components for Next.js applications. This
 library is designed to streamline the development process and ensure consistency across projects.
 
 ## Features
