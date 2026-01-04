@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useCallback, useMemo, forwardRef } from "react";
+import React, { useRef, useState, useEffect, useCallback, forwardRef, FormEvent } from "react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "..";
 import { FormProps } from "./types";
@@ -8,7 +8,14 @@ import { FormProps } from "./types";
 const layouts = {
   col: "flex-col",
   row: "flex-row flex-wrap",
-};
+} as const;
+
+const actionsLayouts = {
+  row: "flex-row justify-end",
+  "row-reverse": "flex-row flex-row-reverse justify-end",
+  col: "flex-col",
+  "col-reverse": "flex-col flex-col-reverse",
+} as const;
 
 const Form = forwardRef<HTMLFormElement, FormProps>(
   (
@@ -25,7 +32,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
       submitLabel = "Submit",
       cancelLabel = "Cancel",
       actionsLayout = "row",
-      actionsSpacing = "0",
+      actionsSpacing = "4",
       submitBackground = "primary",
       submitColor = "light",
       cancelBackground = "transparent",
@@ -41,18 +48,55 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
     },
     ref
   ) => {
-    const internalRef = useRef<HTMLFormElement | null>(null);
-    const [valid, setValid] = useState(false);
-    const [formData, setFormData] = useState<Record<string, string>>({});
-    const layoutClasses = useMemo(() => layouts[layout], [layout]);
+    const formRef = useRef<HTMLFormElement>(null);
+    const [isValid, setIsValid] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const setFormRef = useCallback(
+      (node: HTMLFormElement | null) => {
+        formRef.current = node;
+
+        if (typeof ref === "function") {
+          ref(node);
+        } else if (ref) {
+          (ref as React.RefObject<HTMLFormElement | null>).current = node;
+        }
+      },
+      [ref]
+    );
+
+    const validateForm = useCallback(() => {
+      if (formRef.current) {
+        setIsValid(formRef.current.checkValidity());
+      }
+    }, []);
+
+    useEffect(() => {
+      const form = formRef.current;
+      if (!form) return;
+
+      const handleChangeOrInput = () => validateForm();
+
+      form.addEventListener("change", handleChangeOrInput);
+      form.addEventListener("input", handleChangeOrInput);
+
+      validateForm();
+
+      return () => {
+        form.removeEventListener("change", handleChangeOrInput);
+        form.removeEventListener("input", handleChangeOrInput);
+      };
+    }, [validateForm]);
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (internalRef.current && !internalRef.current.checkValidity()) {
-        setValid(false);
+      const form = formRef.current;
+      if (!form || !form.checkValidity()) {
+        setIsValid(false);
         return;
       }
+
+      const formData = new FormData(form);
 
       if (onFormSubmit) {
         onFormSubmit(formData);
@@ -60,62 +104,32 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
     };
 
     const handleCancel = () => {
-      if (onCancel) onCancel();
+      onCancel?.();
     };
 
-    const handleInputChange = useCallback((event: Event) => {
-      const target = event.target as HTMLInputElement | HTMLTextAreaElement;
-      const { name, value } = target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
-
-      if (internalRef.current) {
-        setValid(internalRef.current.checkValidity());
-      }
-    }, []);
-
-    // Merge external ref with internal ref
-    const setRefs = useCallback(
-      (node: HTMLFormElement | null) => {
-        internalRef.current = node;
-        if (typeof ref === "function") {
-          ref(node);
-        } else if (ref) {
-          ref.current = node;
-        }
-
-        if (node) {
-          node.addEventListener("change", handleInputChange, true);
-        }
-
-        return () => {
-          if (node) {
-            node.removeEventListener("change", handleInputChange, true);
-          }
-        };
-      },
-      [handleInputChange, ref]
-    );
+    const layoutClasses = layouts[layout];
 
     return (
       <form
-        className={twMerge(`form group flex ${layoutClasses} gap-8`, className)}
-        style={style}
+        ref={setFormRef}
         name={name}
         id={name}
-        ref={setRefs}
+        className={twMerge("flex", layoutClasses, "gap-8", className)}
+        style={style}
         onSubmit={handleSubmit}
+        noValidate
       >
         {children}
+
         {actions && (
           <>
-            {separator && <hr className="border-neutral border-t-2 opacity-70" />}
-            <div
-              className={`form-actions mt-auto flex group justify-between flex-grow flex-${actionsLayout} gap-${actionsSpacing}`}
-            >
+            {separator && <hr className="col-span-full border-t border-neutral opacity-70" />}
+
+            <div className={`flex gap-${actionsSpacing} ${actionsLayouts[actionsLayout]}`}>
               {showCancel && (
                 <Button
                   type="button"
-                  className="!justify-center flex-grow"
+                  onClick={handleCancel}
                   btnBackground={cancelBackground}
                   btnColor={cancelColor}
                   outline={cancelOutline}
@@ -123,14 +137,15 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
                   textcase={buttonTextcase}
                   layout={buttonShape}
                   isBold={buttonIsBold}
-                  onClick={handleCancel}
+                  className="flex-grow"
                 >
                   {cancelLabel}
                 </Button>
               )}
+
               <Button
                 type="submit"
-                className="!justify-center flex-grow"
+                disabled={!isValid}
                 btnBackground={submitBackground}
                 btnColor={submitColor}
                 outline={submitOutline}
@@ -138,7 +153,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
                 textcase={buttonTextcase}
                 layout={buttonShape}
                 isBold={buttonIsBold}
-                disabled={!valid}
+                className="flex-grow"
               >
                 {submitLabel}
               </Button>

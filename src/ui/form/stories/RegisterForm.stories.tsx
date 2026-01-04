@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { RegisterForm } from "..";
 
-const handleSubmit = (data: { [key: string]: string }) => {
-  console.log("form data", data);
+const handleSubmit = (formData: FormData) => {
+  const data = Object.fromEntries(formData.entries());
+  console.log("Form submitted:", data);
 };
 
 const handleCancel = () => {

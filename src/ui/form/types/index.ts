@@ -26,7 +26,7 @@ interface CommonFormProps {
   layout?: "col" | "row";
   className?: string;
   style?: React.CSSProperties;
-  onFormSubmit?: (formData: { [key: string]: string }) => void;
+  onFormSubmit?: (formData: FormData) => void;
   onCancel?: () => void;
   showCancel?: boolean;
   actions?: boolean;
