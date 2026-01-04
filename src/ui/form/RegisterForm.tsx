@@ -63,8 +63,10 @@ const RegisterForm = ({
     }
   };
 
-  const handleSubmit = () => {
-    console.log("handleSubmit");
+  const handleFormSubmit = (formData: FormData) => {
+    if (onFormSubmit) {
+      onFormSubmit(formData);
+    }
   };
 
   return (
@@ -73,7 +75,7 @@ const RegisterForm = ({
       actionsLayout={actionsLayout}
       actionsSpacing={actionsSpacing}
       onCancel={handleCancel}
-      onFormSubmit={handleSubmit}
+      onFormSubmit={handleFormSubmit}
       showCancel={showCancel}
       submitLabel={submitLabel}
       submitBackground={submitBackground}
