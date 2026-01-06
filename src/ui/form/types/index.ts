@@ -43,6 +43,7 @@ interface CommonFormProps {
   submitOutlineColor?: OutlineColorOption;
   cancelOutline?: boolean;
   cancelOutlineColor?: ColorOption;
+  buttonSize?: "sm" | "md" | "lg" | "xl";
   buttonTextcase?: "uppercase" | "lowercase" | "capitalize" | "normal-case";
   buttonShape?: "default" | "rounded" | "pill";
   buttonIsBold?: boolean;

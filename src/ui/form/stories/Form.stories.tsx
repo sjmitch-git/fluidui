@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Form, Fieldset } from "..";
 import { TextInput, Autocomplete, SearchInput, Select, PasswordInput, Checkbox } from "../..";
@@ -128,6 +128,10 @@ const meta: Meta<typeof Form> = {
     },
 
     // Button Style
+    buttonSize: {
+      control: "select",
+      options: ["sm", "md", "lg", "xl"],
+    },
     buttonTextcase: {
       control: "inline-radio",
       options: ["uppercase", "lowercase", "capitalize", "normal-case"],
@@ -417,5 +421,94 @@ export const SearchWithOptions: Story = {
         {searchContent()}
       </>
     ),
+  },
+};
+
+const DynamicValidationContent = () => {
+  const [showRequiredField, setShowRequiredField] = useState(false);
+
+  return (
+    <>
+      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <label className="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={showRequiredField}
+            onChange={(e) => setShowRequiredField(e.target.checked)}
+            className="w-5 h-5 rounded text-primary focus:ring-primary"
+          />
+          <span className="font-medium text-lg">Add required "Secret Code" field</span>
+        </label>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+          <strong>Watch the Submit button:</strong> It disables immediately when the required field
+          appears and only enables when you fill it in. This shows how the Form component handles
+          dynamic required fields with real-time native validation.
+        </p>
+      </div>
+
+      <TextInput
+        label="Name"
+        name="name"
+        id="name"
+        autocomplete="name"
+        placeholder="John Doe"
+        required
+      />
+
+      <TextInput
+        label="Email"
+        name="email"
+        id="email"
+        type="email"
+        autocomplete="email"
+        placeholder="john@example.com"
+        required
+      />
+
+      {showRequiredField && (
+        <TextInput
+          label="Secret Code"
+          name="secretCode"
+          id="secretCode"
+          placeholder="Enter the secret code"
+          hint
+          title="This field is required when visible"
+          required
+        />
+      )}
+    </>
+  );
+};
+
+export const DynamicValidation: Story = {
+  args: {
+    onFormSubmit: handleSubmit,
+    children: <DynamicValidationContent />,
+    submitLabel: "Submit Form",
+    submitBackground: "primary",
+    actionsLayout: "row",
+    actionsSpacing: "4",
+    separator: true,
+    buttonIsBold: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+This story showcases the **real-time native validation** feature of the Form component.
+
+**What to try:**
+1. The form starts valid (only Name and Email required)
+2. Check the box → a new **required** "Secret Code" field appears
+3. The **Submit button immediately disables**
+4. Type anything in "Secret Code" → button enables again
+5. Uncheck the box → field disappears → button enables
+
+No manual state management or refs needed — the Form component automatically tracks validity as fields are added/removed.
+
+Perfect for conditional forms like admin tools, multi-step wizards, or your announcement form's "Specific User" field.
+        `,
+      },
+    },
   },
 };

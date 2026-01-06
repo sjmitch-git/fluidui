@@ -41,6 +41,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
       submitOutlineColor = "current",
       cancelOutline = false,
       cancelOutlineColor = "current",
+      buttonSize = "md",
       buttonTextcase = "normal-case",
       buttonShape = "default",
       buttonIsBold = false,
@@ -58,7 +59,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
         if (typeof ref === "function") {
           ref(node);
         } else if (ref) {
-          (ref as React.RefObject<HTMLFormElement | null>).current = node;
+          (ref as React.MutableRefObject<HTMLFormElement | null>).current = node;
         }
       },
       [ref]
@@ -74,16 +75,17 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
       const form = formRef.current;
       if (!form) return;
 
-      const handleChangeOrInput = () => validateForm();
+      const events: (keyof HTMLElementEventMap)[] = ["input", "change", "blur", "keyup"];
 
-      form.addEventListener("change", handleChangeOrInput);
-      form.addEventListener("input", handleChangeOrInput);
+      const handler = () => validateForm();
 
+      events.forEach((event) => form.addEventListener(event, handler));
+
+      // Initial validation
       validateForm();
 
       return () => {
-        form.removeEventListener("change", handleChangeOrInput);
-        form.removeEventListener("input", handleChangeOrInput);
+        events.forEach((event) => form.removeEventListener(event, handler));
       };
     }, [validateForm]);
 
@@ -125,7 +127,9 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
           <>
             {separator && <hr className="col-span-full border-t border-neutral opacity-70" />}
 
-            <div className={`flex gap-${actionsSpacing} ${actionsLayouts[actionsLayout]}`}>
+            <div
+              className={twMerge("flex", `gap-${actionsSpacing}`, actionsLayouts[actionsLayout])}
+            >
               {showCancel && (
                 <Button
                   type="button"
@@ -134,6 +138,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
                   btnColor={cancelColor}
                   outline={cancelOutline}
                   outlineColor={cancelOutlineColor}
+                  size={buttonSize}
                   textcase={buttonTextcase}
                   layout={buttonShape}
                   isBold={buttonIsBold}
@@ -150,6 +155,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
                 btnColor={submitColor}
                 outline={submitOutline}
                 outlineColor={submitOutlineColor}
+                size={buttonSize}
                 textcase={buttonTextcase}
                 layout={buttonShape}
                 isBold={buttonIsBold}
