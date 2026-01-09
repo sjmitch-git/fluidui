@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Sidebar } from "..";
-import { SidebarProps } from "../types";
 import { Tabs } from "../..";
 import { LoginRegister } from "../../tabs/stories/Tabs.stories";
 
@@ -33,6 +32,7 @@ import { Sidebar } from '@smitch/breeze';
     position="right"
     open={false}
     onClose={() => console.log("Sidebar closed")}
+    closePosition="right"
 >
     <Tabs {...LoginRegister.args}>{LoginRegister.args?.children}</Tabs>
 </Sidebar>
@@ -74,7 +74,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args: SidebarProps) => {
+  render: (args) => {
     const [open, setOpen] = useState(args.open);
 
     const handleClose = () => {
@@ -95,10 +95,10 @@ export const Default: Story = {
       </>
     );
   },
-
   args: {
     backdrop: true,
     position: "right",
     open: false,
+    closePosition: "right",
   },
 };
