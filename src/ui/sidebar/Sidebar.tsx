@@ -13,7 +13,7 @@ const positions = {
 }
 
 const sidebarClasses =
-  "fixed top-0 z-[200] w-full max-w-md h-full overflow-y-auto bg-white text-dark dark:bg-dark dark:text-light duration-500";
+  "fixed top-0 z-[200] w-full max-w-md h-full overflow-y-auto duration-500";
 
 const Sidebar = ({
   open = false,
@@ -80,7 +80,7 @@ const Sidebar = ({
       )}
       <aside
         className={twMerge(
-          `sidebar ${sidebarClasses} ${positionClasses} ${
+          `sidebar bg-dark text-light dark:bg-light dark:text-dark ${sidebarClasses} ${positionClasses} ${
             show ? "translate-x-0" : position === "right" ? "translate-x-full" : "-translate-x-full"
           }`,
           className
