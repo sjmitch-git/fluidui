@@ -27,6 +27,7 @@ const Select = ({
   rounded = "none",
   nocaret,
   style,
+  required = false,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number>();
 
@@ -64,8 +65,9 @@ const Select = ({
       value={value}
       size={rows}
       disabled={disabled}
+      required={required}
       className={twMerge(
-        `form-select select-dropdown cursor-pointer border-2 border-slate-300 dark:border-slate-500 dark:bg-dark dark:text-light color-scheme:light font-normal dark:[color-scheme:dark] ${sizeClasses} rounded-${rounded}  ${
+        `form-select select-dropdown cursor-pointer border-2 border-slate-300 dark:border-slate-500 dark:bg-dark dark:text-light color-scheme:light invalid:!border-warning-dark invalid:dark:!border-warning-light font-normal dark:[color-scheme:dark] ${sizeClasses} rounded-${rounded}  ${
           nocaret ? "bg-none pr-3" : "bg-right"
         }`,
         className
