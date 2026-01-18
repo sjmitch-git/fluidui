@@ -119,7 +119,6 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
         className={twMerge("flex", layoutClasses, "gap-8", className)}
         style={style}
         onSubmit={handleSubmit}
-        noValidate
       >
         {children}
 
