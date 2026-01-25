@@ -97,6 +97,7 @@ export interface InputProps {
 	onInput?: React.ChangeEventHandler<HTMLInputElement>
 	onFocus?: React.ChangeEventHandler<HTMLInputElement>
 	onBlur?: React.ChangeEventHandler<HTMLInputElement>
+	onSearch?: React.EventHandler<React.SyntheticEvent<HTMLInputElement>>
 	autocorrect?: 'on' | 'off'
 	spellcheck?: boolean
 	rounded?: 'none' | 'md' | 'lg' | 'full'

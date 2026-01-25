@@ -70,6 +70,7 @@ const Input = forwardRef<InputRef, InputProps>(function Input(props, ref) {
     onChange,
     onFocus,
     onBlur,
+    onSearch,
     hidden,
     ariaLabel,
     autocorrect,

@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-
 import { twMerge } from "tailwind-merge";
-
 import { FaSearch } from "react-icons/fa";
-
 import { Input, Button } from "..";
-
 import { SearchInputProps } from "./types";
 
 const SearchInput = ({
@@ -29,17 +25,24 @@ const SearchInput = ({
   spellcheck = false,
   spacing = "0",
 }: SearchInputProps) => {
-  const [disabled, setDisabled] = useState(true);
-  const input = useRef<HTMLInputElement>(null!);
+  const [value, setValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null!);
 
-  const handleClick = () => {
-    const value = input.current.value;
-    onButtonSubmit(value);
-  };
+  const isDisabled = value.trim() === "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    value ? setDisabled(false) : setDisabled(true);
+    const newValue = e.target.value;
+    setValue(newValue);
+  };
+
+  const handleSearch = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    const currentValue = inputRef.current?.value?.trim() ?? "";
+    onButtonSubmit(currentValue);
+  };
+
+  const handleButtonClick = () => {
+    const trimmed = value.trim();
+    onButtonSubmit(trimmed);
   };
 
   return (
@@ -51,28 +54,31 @@ const SearchInput = ({
       data-testid={name}
     >
       <Input
+        ref={inputRef}
         name={name}
         id={id}
         type="search"
-        ref={input}
         data-testid={`input-${name}`}
-        className={twMerge(`border-neutral`, inputStyles)}
+        className={twMerge("border-neutral", inputStyles)}
         size={size}
         placeholder={placeholder}
         autocomplete={autocomplete}
         autocorrect={autocorrect}
         spellcheck={spellcheck}
         aria-label="Search"
+        value={value}
         onChange={handleChange}
+        onSearch={handleSearch}
         rounded={rounded}
       />
+
       <Button
         layout={btnShape}
         size={size}
         btnBackground={btnBackground}
         btnColor={btnColor}
-        onClick={handleClick}
-        disabled={disabled}
+        onClick={handleButtonClick}
+        disabled={isDisabled}
         title="Submit"
         isBold={true}
       >
