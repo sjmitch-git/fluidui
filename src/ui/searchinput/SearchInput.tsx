@@ -28,8 +28,6 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null!);
 
-  const isDisabled = value.trim() === "";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     if (!newValue) onButtonSubmit(newValue);
@@ -80,7 +78,7 @@ const SearchInput = ({
         btnBackground={btnBackground}
         btnColor={btnColor}
         onClick={handleButtonClick}
-        disabled={isDisabled}
+        disabled={inputRef.current?.value?.trim() === ""}
         title="Submit"
         isBold={true}
         className="min-w-[42px]"
