@@ -91,5 +91,6 @@ export const Default: Story = {
     spellcheck: "on",
     spacing: "2",
     rounded: "none",
+    value: "",
   },
 };

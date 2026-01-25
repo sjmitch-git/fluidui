@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { FaSearch } from "react-icons/fa";
 import { Input, Button } from "..";
@@ -24,20 +24,22 @@ const SearchInput = ({
   autocorrect = "off",
   spellcheck = false,
   spacing = "0",
+  value = "",
 }: SearchInputProps) => {
-  const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null!);
 
   const isDisabled = value.trim() === "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    setValue(newValue);
+    if (!newValue) onButtonSubmit(newValue);
   };
 
-  const handleSearch = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    const currentValue = inputRef.current?.value?.trim() ?? "";
-    onButtonSubmit(currentValue);
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const currentValue = inputRef.current?.value?.trim() ?? "";
+      onButtonSubmit(currentValue);
+    }
   };
 
   const handleButtonClick = () => {
@@ -49,7 +51,7 @@ const SearchInput = ({
     <div
       className={twMerge(
         `search-box flex font-semi-bold gap-${spacing} text-dark dark:text-light`,
-        className
+        className,
       )}
       data-testid={name}
     >
@@ -68,7 +70,7 @@ const SearchInput = ({
         aria-label="Search"
         value={value}
         onChange={handleChange}
-        onSearch={handleSearch}
+        onKeyDown={handleKeydown}
         rounded={rounded}
       />
 
@@ -81,6 +83,7 @@ const SearchInput = ({
         disabled={isDisabled}
         title="Submit"
         isBold={true}
+        className="min-w-[42px]"
       >
         {icon ? <FaSearch /> : label}
         <span className="sr-only">Search</span>

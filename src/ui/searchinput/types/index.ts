@@ -17,5 +17,6 @@ export interface SearchInputProps extends React.HTMLAttributes<HTMLDivElement> {
   spellcheck?: boolean;
   spacing?: "0" | "1" | "2";
   rounded?: "none" | "md" | "lg" | "full";
-  onSearch?: React.EventHandler<React.SyntheticEvent<HTMLInputElement>>;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }

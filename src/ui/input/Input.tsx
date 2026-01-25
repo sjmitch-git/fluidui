@@ -70,7 +70,7 @@ const Input = forwardRef<InputRef, InputProps>(function Input(props, ref) {
     onChange,
     onFocus,
     onBlur,
-    onSearch,
+    onKeyDown,
     hidden,
     ariaLabel,
     autocorrect,
@@ -85,9 +85,9 @@ const Input = forwardRef<InputRef, InputProps>(function Input(props, ref) {
       <input
         className={twMerge(
           `input ${typeClasses(
-            type
+            type,
           )} peer ${sizeClasses} rounded-${rounded} font-normal color-scheme:light dark:[color-scheme:dark] focus:outline-none focus-visible:outline-none focus-visible:border-info disabled:bg-neutral disabled:cursor-default disabled:text-dark disabled:border-transparent invalid:!border-warning-dark invalid:dark:!border-warning-light`,
-          className
+          className,
         )}
         style={style}
         type={type}
@@ -118,6 +118,7 @@ const Input = forwardRef<InputRef, InputProps>(function Input(props, ref) {
         onInput={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         data-testid={id || name}
         aria-label={ariaLabel}
         autoCorrect={autocorrect}
