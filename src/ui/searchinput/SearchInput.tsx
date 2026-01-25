@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { FaSearch } from "react-icons/fa";
 import { Input, Button } from "..";
@@ -26,11 +26,25 @@ const SearchInput = ({
   spacing = "0",
   value = "",
 }: SearchInputProps) => {
+  const [disabled, setDisabled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null!);
+
+  useEffect(() => {
+    if (value && value.trim().length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    if (!newValue) onButtonSubmit(newValue);
+    if (!newValue) {
+      onButtonSubmit(newValue);
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
   };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,8 +55,8 @@ const SearchInput = ({
   };
 
   const handleButtonClick = () => {
-    const trimmed = value.trim();
-    onButtonSubmit(trimmed);
+    const currentValue = inputRef.current?.value?.trim() ?? "";
+    onButtonSubmit(currentValue);
   };
 
   return (
@@ -78,7 +92,7 @@ const SearchInput = ({
         btnBackground={btnBackground}
         btnColor={btnColor}
         onClick={handleButtonClick}
-        disabled={inputRef.current?.value?.trim() === ""}
+        disabled={disabled}
         title="Submit"
         isBold={true}
         className="min-w-[42px]"
