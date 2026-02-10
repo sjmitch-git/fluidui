@@ -92,7 +92,7 @@ const Toast = ({
   const handleClick = onClick || onClose;
 
   return (
-    <aside
+    <div
       className={twMerge(
         `toast fixed z-50 text-dark py-4 px-6 max-w-64 shadow-lg ${className} ${otherClasses} ${animationClasses}`,
         className
@@ -100,6 +100,7 @@ const Toast = ({
       style={style}
       id="toast"
       role="alert"
+      aria-hidden="true"
       tabIndex={-1}
       ref={toastRef}
       onClick={handleClick}
@@ -121,7 +122,7 @@ const Toast = ({
           className="toast-close absolute -top-1 -right-1"
         />
       )}
-    </aside>
+    </div>
   );
 };
 

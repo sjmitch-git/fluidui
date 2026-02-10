@@ -43,7 +43,6 @@ export interface ButtonProps {
   type?: "submit" | "reset" | "button";
   disabled?: boolean;
   tabindex?: number;
-  role?: string;
   textcase?: "uppercase" | "lowercase" | "capitalize" | "normal-case";
   isBold?: boolean;
   shadow?: "none" | "sm" | "md" | "lg" | "xl";

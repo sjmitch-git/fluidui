@@ -54,7 +54,7 @@ const Heading = ({
         `${headingStyles[level]} ${headingWeights[weight]} ${aligns[align]} ${headingCase[transform]} ${className} mb-[.5em]`,
         className
       )}
-      role="heading"
+      aria-level={level}
     >
       {children}
     </Tag>

@@ -91,7 +91,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(props, ref) {
 		onClick,
 		onBlur,
 		tabindex,
-		role = 'button',
 		textcase = 'capitalize',
 		isBold = false,
 		hoverScale = false,
@@ -128,7 +127,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(props, ref) {
 			onClick={onClick}
 			onBlur={onBlur}
 			ref={ref}
-			role={role}
 			suppressHydrationWarning={suppressHydrationWarning}
 		>
 			{children}
