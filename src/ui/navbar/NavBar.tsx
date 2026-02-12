@@ -15,6 +15,7 @@ const NavBar = ({
 	brand,
 	brandSrc,
 	brandStyles,
+	brandAspectRatio,
 	links,
 	linkStyles,
 	btnBackground = 'dark',
@@ -40,6 +41,7 @@ const NavBar = ({
 					brand={brand}
 					src={brandSrc}
 					brandStyles={brandStyles}
+					brandAspectRatio={brandAspectRatio}
 				/>
 			) : (
 				<div></div>

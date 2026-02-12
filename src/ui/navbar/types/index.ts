@@ -10,6 +10,7 @@ export interface NavBarProps {
 	brand?: string
 	brandSrc?: string
 	brandStyles?: string
+	brandAspectRatio?: string
 	links: NavLink[]
 	linkStyles?: string
 	btnBackground?: ButtonBackground
@@ -38,6 +39,7 @@ export interface NavBrandProps {
 	brand?: string
 	src?: string
 	brandStyles?: string
+	brandAspectRatio?: string
 	prefetch?: boolean
 }
 

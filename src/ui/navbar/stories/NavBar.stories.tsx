@@ -10,6 +10,7 @@ import { NavBarProps } from "../types";
 const codeExample = `<NavBar
   brand="My Brand"
   brandSrc: "/brand.png",
+  brandAspectRatio="89 / 22",
   links={[
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -134,6 +135,7 @@ export const Default: Story = {
     placement: "top",
     brand: "My Brand",
     brandSrc: "/brand.png",
+    brandAspectRatio: "89 / 22",
     brandStyles: "",
     btnBackground: "info",
     btnColor: "light",
@@ -178,6 +180,7 @@ export const WithLogin: Story = {
     placement: "top",
     brand: "My Brand",
     brandSrc: "/brand.png",
+    brandAspectRatio: "89 / 22",
     brandStyles: "",
     btnBackground: "dark",
     btnColor: "light",
@@ -221,7 +224,7 @@ const NavBarWithLogin = (args: NavBarProps) => {
               <Form
                 {...LoginForm.args}
                 onCancel={handleClose}
-                onsubmit={handleClose}
+                onFormSubmit={handleClose}
                 className="p-4"
               />
             </div>
@@ -236,7 +239,7 @@ const NavBarWithLogin = (args: NavBarProps) => {
                 confirmLabel="Confirm"
                 checkLabel="Terms & Conditions"
                 onCancel={handleClose}
-                onsubmit={handleClose}
+                onFormSubmit={handleClose}
                 className="p-4"
               />
             </div>
