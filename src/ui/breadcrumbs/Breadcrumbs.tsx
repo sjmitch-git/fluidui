@@ -38,17 +38,9 @@ const Breadcrumbs = ({
   let paths: string[] = [];
   if (pathname) paths = pathname.split("/");
 
-  const buildHref = (path: string) => {
-    for (let i = 0; i < paths.length; i++) {
-      if (i === paths.length - 1) break;
-
-      if (paths[1] === path) {
-        return "/" + path;
-      } else if (paths[2] === path) {
-        return "/" + paths[1] + "/" + path;
-      }
-    }
-    return "";
+  const buildHref = (index: number) => {
+    // Join all segments up to the current index
+    return "/" + paths.slice(1, index + 1).join("/");
   };
 
   const displayPath = (path: string) => {
@@ -88,7 +80,7 @@ const Breadcrumbs = ({
             ) : index === paths.length - 1 ? (
               displayPath(activeLabel || path)
             ) : (
-              <Link href={buildHref(path)} prefetch={prefetch}>
+              <Link href={buildHref(index)} prefetch={prefetch}>
                 {displayPath(path)}
               </Link>
             )}
