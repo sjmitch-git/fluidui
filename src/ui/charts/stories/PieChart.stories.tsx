@@ -17,7 +17,7 @@ The **PieChart** component is a circular chart divided into slices to illustrate
 
 ### Import:
 \`\`\`jsx
-import { PieChart } from '@smitch/breeze/charts'
+import { PieChart } from '@smitch/breeze/lib/charts'
 \`\`\`
 
 ### Example Usage:

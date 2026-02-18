@@ -19,7 +19,7 @@ The **RadarChart** component is ideal for displaying multivariate data, such as 
 
 ### Import:
 \`\`\`jsx
-import { RadarChart } from '@smitch/breeze/charts';
+import { RadarChart } from '@smitch/breeze/lib/charts';
 \`\`\`
 
 ### Example Usage:

@@ -20,7 +20,7 @@ The **ScatterChart** component is ideal for displaying data with two quantitativ
 
 ### Import:
 \`\`\`jsx
-import { ScatterChart } from '@smitch/breeze/charts';
+import { ScatterChart } from '@smitch/breeze/lib/charts';
 \`\`\`
 
 ### Example Usage:

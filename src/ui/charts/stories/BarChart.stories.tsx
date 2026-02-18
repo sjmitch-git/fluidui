@@ -20,7 +20,7 @@ The **BarChart** component renders clear and responsive bar charts for visualizi
 
 ### Import:
 \`\`\`jsx
-import { BarChart } from '@smitch/breeze/charts'
+import { BarChart } from '@smitch/breeze/lib/charts'
 \`\`\`
 
 ### Example Usage:

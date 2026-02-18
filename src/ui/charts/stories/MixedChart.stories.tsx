@@ -18,7 +18,7 @@ The **MixedChart** component is ideal for displaying two or more different chart
 
 ### Import:
 \`\`\`jsx
-import { MixedChart } from '@smitch/breeze/charts';
+import { MixedChart } from '@smitch/breeze/lib/charts';
 \`\`\`
 
 ### Example Usage:

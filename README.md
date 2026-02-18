@@ -181,6 +181,8 @@ Add to your global CSS file (e.g., `globals.css` in App Router):
 
 Import and use [components](#components):
 
+> **Note:** Charts and maps are imported separately from the main library. Use `@smitch/breeze/lib/charts` for charts and `@smitch/breeze/map` for maps. See examples below.
+
 ```jsx
 import { Button } from "@smitch/breeze";
 
@@ -196,6 +198,8 @@ For charts/maps, see below.
 Charts include: BarChart, BubbleChart, LineChart, PieChart, DoughnutChart, ScatterChart, RadarChart,
 PolarAreaChart, MixedChart.
 
+> **Note:** To use chart components, import from `@smitch/breeze/lib/charts`.
+
 Install deps:
 
 ```bash
@@ -205,7 +209,7 @@ npm install chart.js react-chartjs-2
 ### Chart Usage Example
 
 ```jsx
-import { BarChart } from "@smitch/breeze/charts";
+import { BarChart } from "@smitch/breeze/lib/charts";
 
 const App = () => {
   return (
@@ -240,6 +244,8 @@ export default App;
 
 Map components: MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle.
 
+> **Note:** To use map components, import from `@smitch/breeze/map`.
+
 Install deps:
 
 ```bash
@@ -255,7 +261,7 @@ npm install -D @types/leaflet @types/leaflet.fullscreen
 #### Static Map
 
 ```jsx
-import { Map } from "@smitch/breeze/map";
+import { Map } from "@smitch/breeze/lib/map";
 
 const App = () => {
   return (
@@ -277,7 +283,7 @@ export default App;
 #### Map with marker
 
 ```jsx
-import { Map, MapMarker } from "@smitch/breeze/map";
+import { Map, MapMarker } from "@smitch/breeze/lib/map";
 
 const App = () => {
   return (
