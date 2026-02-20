@@ -181,7 +181,7 @@ Add to your global CSS file (e.g., `globals.css` in App Router):
 
 Import and use [components](#components):
 
-> **Note:** Charts and maps are imported separately from the main library. Use `@smitch/breeze/lib/charts` for charts and `@smitch/breeze/map` for maps. See examples below.
+> **Note:** Charts and maps are imported separately from the main library. Use `@smitch/breeze/lib/charts` for charts and `@smitch/breeze/lib/map` for maps. See examples below.
 
 ```jsx
 import { Button } from "@smitch/breeze";
@@ -244,7 +244,7 @@ export default App;
 
 Map components: MapMarker, MapCircle, MapPolygon, MapLine, MapRectangle.
 
-> **Note:** To use map components, import from `@smitch/breeze/map`.
+> **Note:** To use map components, import from `@smitch/breeze/lib/map`.
 
 Install deps:
 

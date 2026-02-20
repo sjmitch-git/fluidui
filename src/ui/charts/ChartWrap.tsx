@@ -110,7 +110,7 @@ const ChartWrap = <T extends ChartTypes>({
     if (options) return merge(defaultOptions, options) as ChartOptionsMap[T];
     return defaultOptions as ChartOptionsMap[T];
   }, [defaultOptions, options]);
-  console.log("combinedOptions", combinedOptions, defaultOptions, options);
+
   return (
     <figure className={twMerge(`chart-wrap h-auto min-w-full ${aspectClasses}`, className)}>
       <Suspense
