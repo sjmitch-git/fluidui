@@ -54,6 +54,7 @@ const SocialShare = ({
   grayscale = false,
   className = "",
   style,
+  shareHomeOnly = false,
 }: SocialShareProps) => {
   const gapClasses = useMemo(() => gapSpacing[gap], [gap]);
   const layoutClasses = useMemo(() => layouts[layout], [layout]);
@@ -73,8 +74,7 @@ const SocialShare = ({
         if (!BtnComponent) return null;
 
         const needsText = !["Facebook", "LinkedIn"].includes(btn);
-        const props = needsText ? { text } : {};
-
+        const props: any = needsText ? { text, shareHomeOnly } : {};
         return <BtnComponent key={btn} btnShape={btnShape} size={size} {...props} />;
       })}
     </div>
