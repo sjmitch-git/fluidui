@@ -20,6 +20,8 @@ Live demo: [https://breezeui.site](https://breezeui.site)
   - [Basic Usage](#basic-usage)
   - [Charts Usage](#charts-usage)
     - [Chart Usage Example](#chart-usage-example)
+  - [Video Usage](#video-usage)
+    - [Video Streaming Support](#video-streaming-support)
   - [Map Usage](#map-usage)
     - [Map Usage Examples](#map-usage-examples)
       - [Static Map](#static-map)
@@ -191,7 +193,7 @@ const App = () => <Button>Click me</Button>;
 export default App;
 ```
 
-For charts/maps, see below.
+For charts/maps/video, see below.
 
 ## Charts Usage
 
@@ -238,6 +240,34 @@ const App = () => {
 };
 
 export default App;
+```
+
+## Video Usage
+
+Video components: VideoPlayer, Video.
+
+> **Note:** To use video components, import from `@smitch/breeze/lib/video`.
+
+```jsx
+import { Video } from "@smitch/breeze/lib/video";
+```
+
+### Video Streaming Support
+
+If you use the Video component for streaming `.m3u8` (HLS) files, you must install `hls.js` in your project:
+
+```bash
+npm install hls.js
+```
+
+- `hls.js` is listed as a peer dependency. It is only required if you use video streaming features.
+- If you do not use streaming, you do not need to install `hls.js`.
+
+**Example:**
+```jsx
+import { Video } from "@smitch/breeze/lib/video";
+
+<Video src="https://c.mjh.nz/abc-kids.m3u8" controls />
 ```
 
 ## Map Usage

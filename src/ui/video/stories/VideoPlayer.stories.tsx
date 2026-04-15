@@ -88,7 +88,7 @@ The **VideoPlayer** component provides a customizable interface for embedding vi
 
 ### Import:
 \`\`\`jsx
-import VideoPlayer from '@smitch/breeze'
+import VideoPlayer from '@smitch/breeze/lib/video'
 \`\`\`
 
 ### Example Usage:

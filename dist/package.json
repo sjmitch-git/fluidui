@@ -1,6 +1,6 @@
 {
   "name": "@smitch/breeze",
-  "version": "2.2.40",
+  "version": "2.2.42",
   "description": "A lightweight, Tailwind-powered React/Next.js UI component library.",
   "main": "lib/index.js",
   "types": "index.d.ts",
@@ -35,7 +35,8 @@
     "tailwindcss": "^3.4.0",
     "@tailwindcss/forms": "^0.5.9",
     "postcss": "^8.4.47",
-    "autoprefixer": "^10.4.20"
+    "autoprefixer": "^10.4.20",
+    "hls.js": ">=1.6.15"
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.5",

@@ -60,5 +60,4 @@ export { TextArea } from "./textarea";
 export { Toast } from "./toast";
 export { Ticker } from "./ticker";
 export { TwitterEmbed } from "./twitterembed";
-export { VideoPlayer, Video } from "./videoplayer";
 export { YoutubeEmbed } from "./youtubeembed";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { CaptionsControl, FullscreenControl, SoundControl, PipControl } from "./controls/";
+import { CaptionsControl, FullscreenControl, SoundControl, PipControl } from "./controls";
 
 import { FaPlay, FaPause } from "react-icons/fa";
 

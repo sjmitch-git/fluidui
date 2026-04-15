@@ -121,7 +121,7 @@ The **Video** component allows embedding and customizing videos in your UI. It s
 
 ### Import:
 \`\`\`jsx
-import Video from '@smitch/breeze';
+import Video from '@smitch/breeze/lib/video';
 \`\`\`
 
 ### Example Usage:
@@ -379,6 +379,23 @@ export const LoopingBackground: Story = {
     videoWidth: {
       table: {
         disable: true,
+      },
+    },
+  },
+};
+
+export const StreamingExample: Story = {
+  args: {
+    src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+    poster: undefined,
+    controls: true,
+    aspect: "video",
+    autoplay: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `Streams an HLS (m3u8) video.\n\n**Note:** HLS streaming requires the \`hls.js\` package for most browsers (Chrome, Firefox, Edge). Only Safari supports HLS natively.\n\nTo enable streaming support, install hls.js in your project:\n\n\`npm install hls.js\`\n\n⚠️ HLS streaming may not work in Storybook due to iframe or CORS restrictions. For reliable testing, use a standalone app/page outside Storybook.`,
       },
     },
   },

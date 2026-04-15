@@ -36,7 +36,7 @@ const preview: Preview = {
         });
       }, [context.id]);
       return (
-        <div className="preview-decorator bg-slate-50 dark:bg-slate-700 dark:text-light p-4">
+        <div className="preview-decorator bg-slate-50 dark:bg-slate-700 dark:text-light md:p-4">
           <Story />
         </div>
       );

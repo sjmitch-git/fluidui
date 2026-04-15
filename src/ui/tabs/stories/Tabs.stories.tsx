@@ -143,9 +143,6 @@ const defaultContent = () => {
       <div id="tab3" data-title="Tab 3">
         <div className="p-4">Tab 3 content</div>
       </div>
-      <div id="tab4" data-title="Tab 4">
-        <div className="p-4">Tab 4 content</div>
-      </div>
     </>
   );
 };

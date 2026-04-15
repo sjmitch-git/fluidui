@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useCallback, useMemo, useState } from "react";
+import type HlsType from "./hls";
 import VideoTracks from "./VideoTracks";
 import { twMerge } from "tailwind-merge";
 import { Loading, Alert } from "..";
@@ -36,7 +37,7 @@ const Video = ({
   controls = true,
   aspect = "video",
   videoWidth = "100%",
-  videoHeight = "auto",
+  videoHeight = "100%",
   loop = false,
   muted,
   autoplay,
@@ -57,6 +58,52 @@ const Video = ({
   className = "",
 }: VideoProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.setAttribute("allow", "remote-playback");
+      if ("disableRemotePlayback" in videoRef.current) {
+        (
+          videoRef.current as HTMLVideoElement & {
+            disableRemotePlayback?: boolean;
+          }
+        ).disableRemotePlayback = false;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const isHls = src.endsWith(".m3u8");
+    const video = videoRef.current;
+    let hls: HlsType | null = null;
+    if (
+      isHls &&
+      video &&
+      typeof window !== "undefined" &&
+      !video.canPlayType("application/vnd.apple.mpegurl")
+    ) {
+      import("./hls")
+        .then(({ default: Hls }) => {
+          if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(src);
+            hls.attachMedia(video);
+          }
+        })
+        .catch((importError: unknown) => {
+          const message = importError instanceof Error ? importError.message : defaultError;
+          setError(message);
+          setLoading(false);
+        });
+    } else if (isHls && video && video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = src;
+    }
+    return () => {
+      if (hls) {
+        hls.destroy();
+      }
+    };
+  }, [src, defaultError]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -163,14 +210,14 @@ const Video = ({
         }
       };
     },
-    [handleEnd, handleError, handleLoadedmetadata, handleTime, handleWaiting, handleCanPlay]
+    [handleEnd, handleError, handleLoadedmetadata, handleTime, handleWaiting, handleCanPlay],
   );
 
   return (
     <figure
       className={twMerge(
         `video-figure group overflow-hidden flex items-center relative ${aspectRatioClasses}`,
-        className
+        className,
       )}
     >
       <video
@@ -188,13 +235,17 @@ const Video = ({
         preload={preload}
         onClick={handleTogglePlay}
       >
-        {formats.map((format, index) => (
-          <source
-            src={`${src.slice(0, src.lastIndexOf("."))}.${format}`}
-            key={index}
-            type={`video/${format}`}
-          />
-        ))}
+        {src.endsWith(".m3u8") ? (
+          <source src={src} type="application/x-mpegurl" />
+        ) : (
+          formats.map((format, index) => (
+            <source
+              src={`${src.slice(0, src.lastIndexOf("."))}.${format}`}
+              key={index}
+              type={`video/${format}`}
+            />
+          ))
+        )}
         {tracks ? <VideoTracks tracks={tracks} srcLangs={srcLangs} /> : null}
         <p>{fallback}</p>
       </video>
